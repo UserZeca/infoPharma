@@ -1,0 +1,336 @@
+{
+    "categorias": [
+      {
+        "titulo": "História e Ciência",
+        "cor": "#9cd33b",    
+        "text": "",
+        "url": ""
+        
+      },
+      {
+        "titulo": "Leon e Nilce",
+        "cor": "#121691",    
+        "text": "Link de um dos canais",
+        "url": "https://www.youtube.com/channel/UChmOR1T5ZNnbRUba3lHRTOg/videos"
+        
+      },
+      {
+        "titulo": "Programação e Tecnologia",
+        "cor": "#6BD1FF",    
+        "text": "",
+        "url": ""
+        
+      },
+      {
+        "titulo": "Filmes",
+        "cor": "orange",    
+        "text": "",
+        "url": ""
+        
+      },
+      {
+        "titulo": "Séries",
+        "cor": "red",    
+        "text": "",
+        "url": ""
+        
+      },
+      {
+        "titulo": "Desenhos e Animes",
+        "cor": "#6b5be2",    
+        "text": "",
+        "url": ""
+        
+      },
+      {
+        "titulo": "Músicas",
+        "cor": "#ede858",    
+        "text": "",
+        "url": ""
+        
+      }
+    ],
+    "videos": [
+      {
+        "categoriaId": 1,
+        "titulo": "Como tornar MARTE habitável? Com Iberê e Castanhari",
+        "url": "https://www.youtube.com/watch?v=DAyKeqm2_uc"
+      }, 
+     {
+        "categoriaId": 1,
+        "titulo": "O QUE É FASCISMO? Entenda de uma forma SIMPLES",
+        "url": "https://www.youtube.com/watch?v=mRRQcTZ1vj0"
+      },
+      {
+        "categoriaId": 1,
+        "titulo": "História no filme Apollo 13 | Nerdologia",
+        "url": "https://www.youtube.com/watch?v=1WzxYQyCL6U&t=234s"
+      },
+       {
+        "categoriaId": 1,
+        "titulo": "OS MISTÉRIOS DO ANTIGO EGITO - Nostalgia História",
+        "url": "https://www.youtube.com/watch?v=ebm-fLo9-NA"
+      },
+  
+      {
+        "categoriaId": 1,
+        "titulo": "As trincheiras da Primeira Guerra Mundial | Nerdologia",
+        "url": "https://www.youtube.com/watch?v=Vl3mdST0blw"
+      },
+      {
+        "categoriaId": 1,
+        "titulo": "Como são criadas as línguas da ficção? | Nerdologia",
+        "url": "https://www.youtube.com/watch?v=x8PcygxgBoo"
+      },
+      {
+        "categoriaId": 2,
+        "titulo": "VIREI UM JEDI! (Especial 10 milhões de Inscritos)",
+        "url": "https://www.youtube.com/watch?v=bUwqhYLJfrE"
+      },
+      {
+        "categoriaId": 2,
+        "titulo": "CORTEI MEU CABELO NA QUARENTENA - Ep. 1452",
+        "url": "https://www.youtube.com/watch?v=PHvq9IUeL64"
+      },
+      {
+        "categoriaId": 2,
+        "titulo": "O OVNI DE MAGÉ - Ep. 1459",
+        "url": "https://www.youtube.com/watch?v=gXXaGuXDLRI"
+      },
+      {
+        "categoriaId": 2,
+        "titulo": "ENGENHEIROS DE RESPEITO!",
+        "url": "https://www.youtube.com/watch?v=hpL5XYSbNZU"
+      },
+      {
+        "categoriaId": 2,
+        "titulo": "A VERGONHA DE COMEMORAR ANTES DA HORA!",
+        "url": "https://www.youtube.com/watch?v=A__jaBoHNzg"
+      },
+      {
+        "categoriaId": 3,
+        "titulo": "Programei 4 robôs que criam vídeos para mim no YouTube",
+        "url": "https://www.youtube.com/watch?v=kjhu1LEmRpY"
+      },
+      {
+        "categoriaId": 3,
+        "titulo": "Teste de Turing",
+        "url": "https://www.youtube.com/watch?v=BaPGU4JWa34"
+      },
+      {
+        "categoriaId": 3,
+        "titulo": "Componentização com VanillaJS #AluraMais",
+        "url": "https://www.youtube.com/watch?v=LatCKpcOMak"
+      },
+      {
+        "categoriaId": 3,
+        "titulo": "Brasileiro programa Inteligência Artificial que aprende a DIRIGIR SOZINHA!!! [Machine Learning]",
+        "url": "https://www.youtube.com/watch?v=iCbks6Q-xfM"
+      },
+      {
+        "categoriaId": 3,
+        "titulo": "Agora Aquela I.A. Foi Longe Demais (e vai mudar o jeito que você trabalha)",
+        "url": "https://www.youtube.com/watch?v=pbVwH8o837A"
+      },
+      {
+        "categoriaId": 3,
+        "titulo": "Vue.js (O competidor de peso do Angular e React) // Dicionário do Programador",
+        "url": "https://www.youtube.com/watch?v=bEl6yN3vd-U"
+      },
+      {
+        "categoriaId": 3,
+        "titulo": "Recriando interface do Github com ReactJS | UI Clone",
+        "url": "https://www.youtube.com/watch?v=iLEbGQXsg3k"
+      },
+      {
+        "categoriaId": 3,
+        "titulo": "Base para aprender os frameworks",
+        "url": "https://www.youtube.com/watch?v=QzDjdlF1BQI"
+      },
+     
+      {
+        "categoriaId": 4,
+        "titulo": "Interestellar",
+        "url": "https://www.youtube.com/watch?v=frD_IiY_A3E"
+      },
+      {
+        "categoriaId": 4,
+        "titulo": "Toy Story 3: Trailer",
+        "url": "https://www.youtube.com/watch?v=JcpWXaA2qeg"
+      },
+      {
+        "categoriaId": 4,
+        "titulo": "harry potter ea pedra filosofal trailer",
+        "url": "https://www.youtube.com/watch?v=MSs0gZJ5P9o"
+      },
+      {
+        "categoriaId": 4,
+        "titulo": "Klaus | Official Trailer | Netflix",
+        "url": "https://www.youtube.com/watch?v=taE3PwurhYM"
+      },
+      {
+        "categoriaId": 4,
+        "titulo": "Como Eu Era Antes de Você - Trailer Oficial 1 (leg) [HD]",
+        "url": "https://www.youtube.com/watch?v=PnqUs3xiAVI"
+      },
+  
+      {
+        "categoriaId": 4,
+        "titulo": "Simplesmente Acontece",
+        "url": "https://www.youtube.com/watch?v=wMMije3mZsY"
+      },
+      {
+        "categoriaId": 4,
+        "titulo": "O Grande Final de Como Treinar o Seu Dragão 3 / Cena Completa Dublada",
+        "url": "https://www.youtube.com/watch?v=8QwJ4lfR8HQ"
+      },
+      {
+        "categoriaId": 4,
+        "titulo": "O HOBBIT: UMA JORNADA INESPERADA - Trailer HD Legendado",
+        "url": "https://www.youtube.com/watch?v=L23yDMuOlow"
+      },
+      {
+        "categoriaId": 4,
+        "titulo": "Trailer Vingadores: ULTIMATO - 25 de abril nos cinemas",
+        "url": "https://www.youtube.com/watch?v=spJoZReeIeQ"
+      },
+  
+      {
+        "categoriaId": 5,
+        "titulo": "The Good Place | Trailer da temporada 01 | Dublado (Brasil) [HD]",
+        "url": "https://www.youtube.com/watch?v=22PDaEUC120"
+      },
+      {
+        "categoriaId": 5,
+        "titulo": "Stranger Things | Official Final Trailer | Netflix",
+        "url": "https://www.youtube.com/watch?v=b9EkMc79ZSU"
+      },
+      {
+        "categoriaId": 5,
+        "titulo": "How I Met Your Mother - Final - Last Forever 9x24 LEGENDADO PTBR",
+        "url": "https://www.youtube.com/watch?v=xNcH_LO8aVI&t=180s"
+      },
+      {
+        "categoriaId": 5,
+        "titulo": "Brooklyn Nine Nine - 5x17 Cena Inicial (Dublado)",
+        "url": "https://www.youtube.com/watch?v=NxHITWx_zOA"
+      },
+      {
+        "categoriaId": 5,
+        "titulo": "Merlin - Series 1 - Full Trailer (2008)",
+        "url": "https://www.youtube.com/watch?v=SDFOpCfEbgQ"
+      },
+      {
+        "categoriaId": 5,
+        "titulo": "Anne with an E | Trailer principal da Temporada 2 [HD] | Netflix",
+        "url": "https://www.youtube.com/watch?v=ewcsTzE9fMA"
+      },
+      {
+        "categoriaId": 5,
+        "titulo": "Desventuras em Série - Trailer Oficial - Netflix [HD]",
+        "url": "https://www.youtube.com/watch?v=BNhIxSkvspg"
+      },
+      {
+        "categoriaId": 6,
+        "titulo": "Avatar & Katara vs Azula And Zuko ( Avatar A Lenda De Ang ) Dublado",
+        "url": "https://www.youtube.com/watch?v=Iw8Vcpf5L9M"
+      },
+      {
+        "categoriaId": 6,
+        "titulo": "Infinity Train | Crazy Train Trailer | Cartoon Network",
+        "url": "https://www.youtube.com/watch?v=bXPZzXeGD6s"
+      },
+      {
+        "categoriaId": 6,
+        "titulo": "[HDTV] Abertura do Desenho 'O Que Há de Novo, Scooby Doo?' (Sbt)",
+        "url": "https://www.youtube.com/watch?v=O5OXEnk-7bU"
+      },
+      {
+        "categoriaId": 6,
+        "titulo": "Boku no Hero Academia Season 5 Trailer",
+        "url": "https://www.youtube.com/watch?v=yws09wYHcYg"
+      },
+      {
+        "categoriaId": 6,
+        "titulo": "Phineas and Ferb The Movie: Candace Against The Universe | Official Trailer | Disney+",
+        "url": "https://www.youtube.com/watch?v=jcqziqIcJ_g"
+      },
+      {
+        "categoriaId": 6,
+        "titulo": "Naruto Shippuden Official Trailer",
+        "url": "https://www.youtube.com/watch?v=thh7bVCgDHs"
+      },
+      {
+        "categoriaId": 6,
+        "titulo": "Timão e Pumba EP 02 Parte 1",
+        "url": "https://www.youtube.com/watch?v=rhRt1C8JXO8"
+      },
+      {
+        "categoriaId": 6,
+        "titulo": "2°ABERTURA DE SUPER ONZE",
+        "url": "https://www.youtube.com/watch?v=EhApY0g35yw"
+      },
+       {
+        "categoriaId": 7,
+        "titulo": "Priscilla Alcantara, Whindersson Nunes - Girassol (Audio)",
+        "url": "https://www.youtube.com/watch?v=f7RS8IEj108"
+      },
+      {
+        "categoriaId": 7,
+        "titulo": "Hillsong United - 'Oceans' (Live show at Caesarea)",
+        "url": "https://www.youtube.com/watch?v=OP-00EwLdiU"
+      },
+      {
+        "categoriaId": 7,
+        "titulo": "É TUDO SOBRE VOCÊ | MORADA (CLIPE OFICIAL)",
+        "url": "https://www.youtube.com/watch?v=ePdRgBWhvog"
+      },
+      {
+        "categoriaId": 7,
+        "titulo": "padaria - pedro salomão part tiê | ARIEL ukulele cover",
+        "url": "https://www.youtube.com/watch?v=0cBCsbU8xa4"
+      },
+      {
+        "categoriaId": 7,
+        "titulo": "twenty one pilots - Can't Help Falling In Love (Elvis Cover)",
+        "url": "https://www.youtube.com/watch?v=6ThQkrXHdh4"
+      },
+      {
+        "categoriaId": 7,
+        "titulo": "What A Beautiful Name LIVE in Israel - Hillsong UNITED",
+        "url": "https://www.youtube.com/watch?v=0IORSWpGcMU"
+      },
+      {
+        "categoriaId": 7,
+        "titulo": "Kodaline - All I Want (Part 1)",
+        "url": "https://www.youtube.com/watch?v=mtf7hC17IBM"
+      },
+      {
+        "categoriaId": 7,
+        "titulo": "Caetano Veloso, Maria Gadú - O Leãozinho",
+        "url": "https://www.youtube.com/watch?v=A1WDI3vmbVI"
+      },
+      {
+        "categoriaId": 7,
+        "titulo": "Rubel, ANAVITÓRIA - Partilhar [Clipe Oficial]",
+        "url": "https://www.youtube.com/watch?v=WkLpoUiasZ8"
+      },
+      {
+        "categoriaId": 7,
+        "titulo": "Paula Fernandes - Jeito De Mato (Ao Vivo)",
+        "url": "https://www.youtube.com/watch?v=hesptNyhRk0"
+      },
+      {
+        "categoriaId": 7,
+        "titulo": "Fernandinho - Nada Além do Sangue",
+        "url": "https://www.youtube.com/watch?v=zmN6nFLgk4E"
+      },
+      {
+        "categoriaId": 7,
+        "titulo": "Morada - Só Tu és Santo, Uma Coisa, Deixa Queimar (Letra) [JesusCopy 2017]",
+        "url": "https://www.youtube.com/watch?v=tFwQgESQ2pc"
+      }
+      
+     
+    ]
+  }

@@ -1,0 +1,53 @@
+{
+  "name": "zecaflix",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "json-server": "^0.16.3",
+    "mysql2": "^2.2.5",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^2.1.8",
+    "react-slick": "^0.27.1",
+    "sequelize": "^6.3.5",
+    "styled-components": "^5.1.1"
+  },
+  "scripts": {
+    "server": "node ./server.js",
+    "devFrontEnd": "react-scripts start",
+    "start": "npm run server",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  },
+  "description": "[![project name](https://img.shields.io/badge/UserZeca-ZecaFlix-red)](https://github.com/UserZeca) [![project type](https://img.shields.io/badge/React-SPA-green)](https://www.devmedia.com.br/ja-ouviu-falar-em-single-page-applications/39009) [![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/UserZeca/ZecaFlix-front-end-react/blob/master/LICENSE)",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "author": "",
+  "license": "ISC"
+}
