@@ -1,4 +1,4 @@
-# ZecaFlix-front-end-react
+# infoPharma
 
 [![project name](https://img.shields.io/badge/UserZeca-ZecaFlix-red)](https://github.com/UserZeca)
 [![project type](https://img.shields.io/badge/React-SPA-green)](https://www.devmedia.com.br/ja-ouviu-falar-em-single-page-applications/39009)
