@@ -1,4 +1,12 @@
 import config from '../config'
+import {insertVideo} from '../teste2.js'
+
+function create(objetoDoVideo){
+    
+    insertVideo(objetoDoVideo);
+
+}
+/*
 
 const URL_VIDEOS = `${config.URL_BACKEND}/videos`;
 
@@ -17,12 +25,14 @@ function create(objetoDoVideo){
             if(respostaDoServidor.ok){   
                 const resposta = await respostaDoServidor.json();
                 
+                console.log(resposta);
                 return resposta;
             }
             throw new Error('Não foi possível se conectar ao servidor!');
         });
 }
 
+*/
 
 export default {
     create,

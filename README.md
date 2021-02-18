@@ -1,4 +1,19 @@
-# infoPharma
+# ZecaFlix-front-end-react
+
+[![project name](https://img.shields.io/badge/UserZeca-ZecaFlix-red)](https://github.com/UserZeca)
+[![project type](https://img.shields.io/badge/React-SPA-green)](https://www.devmedia.com.br/ja-ouviu-falar-em-single-page-applications/39009)
+[![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/UserZeca/ZecaFlix-front-end-react/blob/master/LICENSE)
+
+
+> Projeto iniciado durante a imersão react da alura, e tem com objetivo criar uma SPA([Single Page Aplication](https://www.devmedia.com.br/ja-ouviu-falar-em-single-page-applications/39009)), utilizando **React**.
+>
+> Quer ver como ta ficando? Acessa a [**DEMO**](https://zeca-flix-front-end-react.vercel.app/)
+
+<p align="center">
+    <img src="https://github.com/UserZeca/ZecaFlix-front-end-react/blob/master/docs/imagemDoSite.png" alt="Imagem do Site" />
+</p>
+
+
 ## What was done?! /O que foi feito?!
 
 + **SPA** </br> 
@@ -30,26 +45,9 @@
     O projeto possui até o momento 4 páginas,home,página de cadastro de video, página de cadastro de categoria e erro 404. Todas essas páginas, também tiveram sua construção "componentizada".
 
 
-## Como iniciar o projeto:
-
-Antes de tudo você deverá ultizar o seguinte comando dentro do diretório raiz do projeto, utilizando o terminal linux/terminal MAC/CMD/:
-`
-  npm install
-`
-
-O comando acima fará a instalação de todos os pacotes e bibliotecas necessários para a execução do projeto.
-Após o passo anterior vá até a pasta "src" por meio de seu terminal, e digite o seguinte comando:
-`
-  npm run devFrontEnd
-`
-
-O comando acima executará a aplicação com o backend baseado no json server construido para testes do front-end. 
-
 ## Available Scripts/ Scripts Disponíveis
 
 > O projeto possui alguns comandos expecíficos, que permitem um controle de como queremos executar a aplicação.
-
-
 
 ### `npm start`
 
@@ -72,13 +70,11 @@ Esse comando roda nossa aplicação front end, na porta 3000. Caso queira realiz
 
 Esse projeto não possui um sistema de versionamento.
 
-
-
 ## History/Histórico
+
+Veja as [Releses](https://github.com/UserZeca/ZecaFlix-front-end-react/releases).
 
 
 ## License/Licença do Projeto
 
-
-
-
+[MIT License](https://github.com/UserZeca/ZecaFlix-front-end-react/blob/master/LICENSE) © [UserZeca](https://github.com/UserZeca/ZecaFlix-front-end-react)

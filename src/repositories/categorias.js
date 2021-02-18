@@ -5,7 +5,7 @@ const URL_CATEGORIES = `${config.URL_BACKEND}/categorias`;
 
 function getAllWithVideos(){
     setTimeout(()=>{console.log('Requirindo todas as categorias com os videos...')}, 1000);
-    return (fetch(`${URL_CATEGORIES}?_embed=videos`).then(
+    return (fetch(`${URL_CATEGORIES}?_embed=`).then(
         async (respostaDoServidor) => {
             if(respostaDoServidor.ok){   
                 const resposta = await respostaDoServidor.json();
