@@ -11,7 +11,8 @@ function Carroussel({
   const categoryTitle = category.titulo;
   const categoryColor = category.cor;
   const categoryExtraLink = category.link_extra;
-  const videos = category.videos;
+  const videos = category.Videos;
+
  
   return (
     <VideoCardGroupContainer>

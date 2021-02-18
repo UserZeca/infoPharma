@@ -34,6 +34,8 @@ function Home() {
       }
     ,[]);
     
+    console.log('TESTE 1.0');
+    console.log(db)
 
   return (
    
@@ -52,8 +54,8 @@ function Home() {
 
             <>
               <BannerMain 
-                videoTitle={db[0].videos[0].titulo}
-                url={db[0].videos[0].url}
+                videoTitle={db[0].Videos[0].titulo}
+                url={db[0].Videos[0].url}
                 videoDescription={"Será que é possível tornar MARTE em um planeta Habitável? Como iremos fazer isso? Descubra aqui, no Nostalgia Ciência!"}
 
                 />

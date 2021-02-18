@@ -55,13 +55,17 @@ function CadastroVideo(){
                   alert('Erro ao cadastrar video');
               }else{
                   
-                 
-                  videosRepository.create({
+                  let video = {
                     id: '',
                     categoriaId: categoriaEscolhida.id ,
                     titulo: valores.titulo,
                     url: valores.url,
-                  })
+                  }
+
+                  console.log(video);
+
+                 
+                  videosRepository.create(video)
                   .then(() =>{
                     history.push('/');
     

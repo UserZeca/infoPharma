@@ -402,11 +402,11 @@ async function getVideos(){
 
 //getVideos()
 //getCategorias();
- getCategoriasWithVideos();
+ //getCategoriasWithVideos();
 
 // ___________________________ Área de Testes ____________________
 
-//loadData()
+loadData()
 
 //deleteVideo(57);
 

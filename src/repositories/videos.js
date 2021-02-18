@@ -4,7 +4,9 @@ const URL_VIDEOS = `${config.URL_BACKEND}/videos`;
 
 
 function create(objetoDoVideo){
+
     setTimeout(()=>{console.log('Enviando novo video ao servidor...')}, 1000);
+    setTimeout(()=>{console.log(objetoDoVideo);}, 1000);
     return fetch(`${URL_VIDEOS}`,{
         method: 'POST',
         headers: {

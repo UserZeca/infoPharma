@@ -34,6 +34,9 @@ function getAll(){
 }
 
 function create(objetoDaCategoria){
+
+    
+
     setTimeout(()=>{console.log('Enviando nova categoria ao servidor...')}, 1000);
     return fetch(`${URL_CATEGORIES}`,{
         method: 'POST',
