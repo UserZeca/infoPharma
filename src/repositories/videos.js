@@ -1,12 +1,4 @@
 import config from '../config'
-import {insertVideo} from '../teste2.js'
-
-function create(objetoDoVideo){
-    
-    insertVideo(objetoDoVideo);
-
-}
-/*
 
 const URL_VIDEOS = `${config.URL_BACKEND}/videos`;
 
@@ -32,7 +24,6 @@ function create(objetoDoVideo){
         });
 }
 
-*/
 
 export default {
     create,

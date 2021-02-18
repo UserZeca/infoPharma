@@ -8,7 +8,7 @@ const URL_BACKEND = window.location.hostname.includes('localhost')
  */
 
 
-const URL_BACKEND = 'http://localhost:8080';
+const URL_BACKEND = 'http://localhost:8080/api';
 
 //const URL_BACKEND = 'https://zecaflix.herokuapp.com';
 console.log('server rodando em:',URL_BACKEND);

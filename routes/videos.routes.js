@@ -10,7 +10,6 @@ module.exports = app => {
     router.put('/:id', categorias.update);
     router.delete('/:id', categorias.delete);
     router.delete('/', categorias.deleteAll);
-
     app.use('/api/videos', router);
     
 }

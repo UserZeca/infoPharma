@@ -1,14 +1,18 @@
 import config from '../config'
 
 const URL_CATEGORIES = `${config.URL_BACKEND}/categorias`;
+const URL_CATEGORIESWITHVIDEOS = `${config.URL_BACKEND}/categoriasWithVideos`;
 
 
 function getAllWithVideos(){
     setTimeout(()=>{console.log('Requirindo todas as categorias com os videos...')}, 1000);
-    return (fetch(`${URL_CATEGORIES}?_embed=`).then(
+    return (fetch(`${URL_CATEGORIESWITHVIDEOS}`).then(
         async (respostaDoServidor) => {
+            console.log(respostaDoServidor.ok);
             if(respostaDoServidor.ok){   
                 const resposta = await respostaDoServidor.json();
+                console.log('Testando....');
+                console.log(resposta);
                 return resposta;
             }
             throw new Error('Não foi possível se conectar ao servidor!');
@@ -17,10 +21,12 @@ function getAllWithVideos(){
 
 function getAll(){
     setTimeout(()=>{console.log('Requirindo todas as categorias...')}, 1000);
-    return fetch(`${URL_CATEGORIES}?_embed=videos`).then(
+    return fetch(`${URL_CATEGORIES}`).then(
         async (respostaDoServidor) => {
             if(respostaDoServidor.ok){   
                 const resposta = await respostaDoServidor.json();
+
+                
                 return resposta;
             }
             throw new Error('Não foi possível se conectar ao servidor!');
