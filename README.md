@@ -5,15 +5,6 @@
 [![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/UserZeca/ZecaFlix-front-end-react/blob/master/LICENSE)
 
 
-> Projeto iniciado durante a imersão react da alura, e tem com objetivo criar uma SPA([Single Page Aplication](https://www.devmedia.com.br/ja-ouviu-falar-em-single-page-applications/39009)), utilizando **React**.
->
-> Quer ver como ta ficando? Acessa a [**DEMO**](https://zeca-flix-front-end-react.vercel.app/)
-
-<p align="center">
-    <img src="https://github.com/UserZeca/ZecaFlix-front-end-react/blob/master/docs/imagemDoSite.png" alt="Imagem do Site" />
-</p>
-
-
 ## What was done?! /O que foi feito?!
 
 + **SPA** </br> 
