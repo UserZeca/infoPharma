@@ -3,6 +3,16 @@ const DOMParser = require('dom-parser');
 
 const { JSDOM } = require('jsdom');
 
+let medicamentos;
+let dermocosmeticos;
+let perfumaria;
+let saudeBucal = [];
+
+const NUMERO_DE_PAGINAS = 10;
+
+
+
+
 
 function obterMedicamento(DOM,categoria) {
 
@@ -56,7 +66,7 @@ function obterMedicamento(DOM,categoria) {
     return medicamentos;
 }
 
-function obeterOutrosProdutos(DOM,categoria) {
+ function obterOutrosProdutos(DOM,categoria) {
 
      const dom = new JSDOM(DOM);
         let produtos = [];
@@ -71,8 +81,8 @@ function obeterOutrosProdutos(DOM,categoria) {
     
         //console.log(typeof dom);
         nome = $('.title-3.text-center.color-1.semibold').get();
-        valorMinimo = $('.title-4.text-center span:nth-child(1)');
-        valorMaximo = $('.title-4.text-center span:nth-child(2)');
+        valorMinimo = $('.title-4.text-center span:nth-child(1)').get();
+        valorMaximo = $('.title-4.text-center span:nth-child(2)').get();
 
         arrayLength.push(nome.length);
         arrayLength.push(valorMinimo.length);
@@ -99,10 +109,12 @@ function obeterOutrosProdutos(DOM,categoria) {
     return produtos;
 }
 
-/*
-// ___________ Obtendo Medicamentos _______________
 
-fetch('https://www.cliquefarma.com.br/medicamentos/genericos')
+//async function main(){}
+// ___________ Obtendo Medicamentos _______________
+/*
+
+await fetch('https://www.cliquefarma.com.br/medicamentos/genericos')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -114,8 +126,10 @@ fetch('https://www.cliquefarma.com.br/medicamentos/genericos')
     )
     .then((html) => {
 
-        console.log(obterMedicamento(html, 'Medicamentos Genéricos'));
-        console.log('\n\n');
+
+        medicamentos.push(obterMedicamento(html, 'Medicamentos Genéricos'));
+        
+
    
     })
     .catch(err =>{
@@ -123,7 +137,7 @@ fetch('https://www.cliquefarma.com.br/medicamentos/genericos')
     });
 
 
-fetch('https://www.cliquefarma.com.br/medicamentos/antialergicos')
+await fetch('https://www.cliquefarma.com.br/medicamentos/antialergicos')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -135,15 +149,17 @@ fetch('https://www.cliquefarma.com.br/medicamentos/antialergicos')
     )
     .then((html) => {
 
-        console.log(obterMedicamento(html, 'Antialergicos'));
-        console.log('\n\n');
+     
+        
+        medicamentos.push(obterMedicamento(html, 'Antialergicos'));
+      
 
     })
     .catch(err =>{
         console.log(err);
     });
 
-fetch('https://www.cliquefarma.com.br/medicamentos/anti-hipertensivo')
+await fetch('https://www.cliquefarma.com.br/medicamentos/anti-hipertensivo')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -155,15 +171,18 @@ fetch('https://www.cliquefarma.com.br/medicamentos/anti-hipertensivo')
     )
     .then((html) => {
 
-        console.log(obterMedicamento(html, 'Anti Hipertensivo'));
-        console.log('\n\n');
+    
+    
+        medicamentos.push(obterMedicamento(html, 'Anti Hipertensivo'));
+  
+        
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/medicamentos/diabetes')
+await fetch('https://www.cliquefarma.com.br/medicamentos/diabetes')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -175,8 +194,9 @@ fetch('https://www.cliquefarma.com.br/medicamentos/diabetes')
     )
     .then((html) => {
 
-        console.log(obterMedicamento(html, 'Diabetes'));
-        console.log('\n\n');
+   
+        medicamentos.push(obterMedicamento(html, 'Diabetes'));
+  
 
     })
     .catch(err =>{
@@ -184,7 +204,7 @@ fetch('https://www.cliquefarma.com.br/medicamentos/diabetes')
 });
 
 
-fetch('https://www.cliquefarma.com.br/medicamentos/digestivo')
+await fetch('https://www.cliquefarma.com.br/medicamentos/digestivo')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -196,15 +216,16 @@ fetch('https://www.cliquefarma.com.br/medicamentos/digestivo')
     )
     .then((html) => {
 
-        console.log(obterMedicamento(html, 'Digestivos'));
-        console.log('\n\n');
+
+        medicamentos.push(obterMedicamento(html, 'Digestivos'));
+     
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/medicamentos/vitaminas')
+await fetch('https://www.cliquefarma.com.br/medicamentos/vitaminas')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -216,20 +237,41 @@ fetch('https://www.cliquefarma.com.br/medicamentos/vitaminas')
     )
     .then((html) => {
 
-        console.log(obterMedicamento(html, 'Vitaminas'));
-        console.log('\n\n');
+        medicamentos.push(obterMedicamento(html, 'Vitaminas'));
+      
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-/*
+console.log(medicamentos);
+*/
 
 // ___________ Obtendo Dermocosméticos _______________
 
 
-fetch('https://www.cliquefarma.com.br/s/antienvelhecimento-antirrugas')
+/*
+await fetch('https://www.cliquefarma.com.br/dermocosmeticos/antienvelhecimento-antirrugas')
+  .then(
+    async (respostaDoServidor) => {
+        if(respostaDoServidor.ok){   
+            
+            return respostaDoServidor.text();
+        }
+        throw new Error('Não foi possível se conectar ao servidor!');
+        }
+    )
+    .then((html) => {
+        dermocosmeticos.push(obterOutrosProdutos(html, 'Antirrugas'))
+        
+
+    })
+    .catch(err =>{
+        console.log(err);
+});
+
+await fetch('https://www.cliquefarma.com.br/dermocosmeticos/cabelos')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -241,15 +283,15 @@ fetch('https://www.cliquefarma.com.br/s/antienvelhecimento-antirrugas')
     )
     .then((html) => {
 
-        console.log(obeterOutrosProdutos(html, 'Antirrugas'));
-        console.log('\n\n');
+        dermocosmeticos.push(obterOutrosProdutos(html, 'Cabelos'))
+        
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/s/cabelos')
+await fetch('https://www.cliquefarma.com.br/dermocosmeticos/hidratantes')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -261,15 +303,15 @@ fetch('https://www.cliquefarma.com.br/s/cabelos')
     )
     .then((html) => {
 
-        console.log(obeterOutrosProdutos(html, 'Cabelos'));
-        console.log('\n\n');
+        dermocosmeticos.push(obterOutrosProdutos(html, 'Hidratantes'))
+        
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/s/hidratantes')
+await fetch('https://www.cliquefarma.com.br/dermocosmeticos/higienizacao')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -281,15 +323,15 @@ fetch('https://www.cliquefarma.com.br/s/hidratantes')
     )
     .then((html) => {
 
-        console.log(obeterOutrosProdutos(html, 'Hidratantes'));
-        console.log('\n\n');
+        dermocosmeticos.push(obterOutrosProdutos(html, 'Higienização'))
+        
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/s/higienizacao')
+await fetch('https://www.cliquefarma.com.br/dermocosmeticos/olhos-rosto')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -301,15 +343,15 @@ fetch('https://www.cliquefarma.com.br/s/higienizacao')
     )
     .then((html) => {
 
-        console.log(obeterOutrosProdutos(html, 'Higienização'));
-        console.log('\n\n');
+        dermocosmeticos.push(obterOutrosProdutos(html, 'Olhos & Rosto')) 
+        
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/s/olhos-rosto')
+await fetch('https://www.cliquefarma.com.br/dermocosmeticos/protetor-bloqueador-solar')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -321,40 +363,23 @@ fetch('https://www.cliquefarma.com.br/s/olhos-rosto')
     )
     .then((html) => {
 
-        console.log(obeterOutrosProdutos(html, 'Olhos & Rosto'));
-        console.log('\n\n');
+        dermocosmeticos.push(obterOutrosProdutos(html, 'Protetor/Bloqueador Solar'));        
+        
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/s/protetor-bloqueador-solar')
-  .then(
-    async (respostaDoServidor) => {
-        if(respostaDoServidor.ok){   
-            
-            return respostaDoServidor.text();
-        }
-        throw new Error('Não foi possível se conectar ao servidor!');
-        }
-    )
-    .then((html) => {
+await console.log(dermocosmeticos);
 
-        console.log(obeterOutrosProdutos(html, 'Protetor/Bloqueador Solar'));
-        console.log('\n\n');
-
-    })
-    .catch(err =>{
-        console.log(err);
-});
-
+*/
 
 // ___________ Obtendo Produtos de Perfumaria _______________
 
+/*
 
-
-fetch('https://www.cliquefarma.com.br/perfumaria/acessorios')
+await fetch('https://www.cliquefarma.com.br/perfumaria/acessorios')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -366,15 +391,14 @@ fetch('https://www.cliquefarma.com.br/perfumaria/acessorios')
     )
     .then((html) => {
 
-        console.log(obeterOutrosProdutos(html, 'Acessórios - Perfumaria'));
-        console.log('\n\n');
+        perfumaria.push(obterOutrosProdutos(html, 'Acessórios - Perfumaria'));
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/perfumaria/desodorantes')
+await fetch('https://www.cliquefarma.com.br/perfumaria/desodorantes')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -386,15 +410,14 @@ fetch('https://www.cliquefarma.com.br/perfumaria/desodorantes')
     )
     .then((html) => {
 
-        console.log(obeterOutrosProdutos(html, 'Desodorantes'));
-        console.log('\n\n');
+        perfumaria.push(obterOutrosProdutos(html, 'Desodorantes'));
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/perfumaria/protetores-e-bronzeadores')
+await fetch('https://www.cliquefarma.com.br/perfumaria/protetores-e-bronzeadores')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -406,15 +429,14 @@ fetch('https://www.cliquefarma.com.br/perfumaria/protetores-e-bronzeadores')
     )
     .then((html) => {
 
-        console.log(obeterOutrosProdutos(html, 'Protetores & Bronzeadores'));
-        console.log('\n\n');
+        perfumaria.push(obterOutrosProdutos(html, 'Protetores & Bronzeadores'));
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/perfumaria/shampoo')
+await fetch('https://www.cliquefarma.com.br/perfumaria/shampoo')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -426,15 +448,14 @@ fetch('https://www.cliquefarma.com.br/perfumaria/shampoo')
     )
     .then((html) => {
 
-        console.log(obeterOutrosProdutos(html, 'Shampoo'));
-        console.log('\n\n');
+        perfumaria.push(obterOutrosProdutos(html, 'Shampoo'));
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/perfumaria/tintura')
+await fetch('https://www.cliquefarma.com.br/perfumaria/tintura')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -446,15 +467,14 @@ fetch('https://www.cliquefarma.com.br/perfumaria/tintura')
     )
     .then((html) => {
 
-        console.log(obeterOutrosProdutos(html, 'Tintura'));
-        console.log('\n\n');
+        perfumaria.push(obterOutrosProdutos(html, 'Tintura'));
 
     })
     .catch(err =>{
         console.log(err);
 });
 
-fetch('https://www.cliquefarma.com.br/perfumaria/unhas')
+await fetch('https://www.cliquefarma.com.br/perfumaria/unhas')
   .then(
     async (respostaDoServidor) => {
         if(respostaDoServidor.ok){   
@@ -466,138 +486,94 @@ fetch('https://www.cliquefarma.com.br/perfumaria/unhas')
     )
     .then((html) => {
 
-        console.log(obeterOutrosProdutos(html, 'Unhas'));
-        console.log('\n\n');
+        perfumaria.push(obterOutrosProdutos(html, 'Unhas'));
 
     })
     .catch(err =>{
         console.log(err);
 });
 
+console.log(perfumaria);
+
+*/
 // ___________ Obtendo Produtos de Saúde Bucal _______________
+/*
+for(var i =0; i< 10; i++){
+    var url;
+   
+    if(i == 0)
+        url = 'https://www.cliquefarma.com.br/saude-bucal/acessorios' + '/'+ i;
+    else
+        url = 'https://www.cliquefarma.com.br/saude-bucal/acessorios'
+
+    await fetch(url)
+    .then(
+        async (respostaDoServidor) => {
+            if(respostaDoServidor.ok){   
+                
+                return respostaDoServidor.text();
+            }
+            throw new Error('Não foi possível se conectar ao servidor!');
+            }
+        )
+        .then((html) => {
+
+            saudeBucal.push(obterOutrosProdutos(html, 'Acessórios - Saúde Bucal'));
+
+        })
+        .catch(err =>{
+            console.log(err);
+    });
+}
+
+
+
+
 */
 
 
-fetch('https://www.cliquefarma.com.br/saude-bucal/acessorios')
-  .then(
-    async (respostaDoServidor) => {
-        if(respostaDoServidor.ok){   
+
+async function buscaDadosSaudeBucal(urlDeDestino, maxPaginas, subCategoria){
+        
+    let url;
+
+    for(var i =1; i<= maxPaginas; i++){
+        
+        i == 1 ? url = urlDeDestino + '/'+ i : url = urlDeDestino;  
             
-            return respostaDoServidor.text();
-        }
-        throw new Error('Não foi possível se conectar ao servidor!');
-        }
-    )
-    .then((html) => {
+        await fetch(url)
+        .then(
+            async (respostaDoServidor) => {
+                if(respostaDoServidor.ok){   
+                    
+                    return respostaDoServidor.text();
+                }
+                throw new Error('Não foi possível se conectar ao servidor!');
+                }
+            )
+            .then(async (html) => {
+                saudeBucal.push(obterOutrosProdutos(html, subCategoria));
+            })
+            .catch(err =>{
+                console.log(err);
+        });
+        
+    }
 
-        console.log(obeterOutrosProdutos(html, 'Acessórios - Saúde Bucal'));
-        console.log('\n\n');
+    //console.log(saudeBucal);
+    
+}
 
-    })
-    .catch(err =>{
-        console.log(err);
-});
+async function main(){
 
+    await buscaDadosSaudeBucal('https://www.cliquefarma.com.br/saude-bucal/fixadores-de-protese', NUMERO_DE_PAGINAS, 'Fixadores de Protese');
+    await buscaDadosSaudeBucal('https://www.cliquefarma.com.br/saude-bucal/escova-dental', NUMERO_DE_PAGINAS, 'Escovas de Dente');
+    await buscaDadosSaudeBucal('https://www.cliquefarma.com.br/saude-bucal/enxaguatorio', NUMERO_DE_PAGINAS, 'Enxaguatório');
+    await buscaDadosSaudeBucal('https://www.cliquefarma.com.br/saude-bucal/creme-dental', NUMERO_DE_PAGINAS, 'Creme Dental');
+    await buscaDadosSaudeBucal('https://www.cliquefarma.com.br/saude-bucal/antisseptico-bucal', NUMERO_DE_PAGINAS, 'Antisséptico Bucal');
+    await buscaDadosSaudeBucal('https://www.cliquefarma.com.br/saude-bucal/acessorios', NUMERO_DE_PAGINAS, 'Acessórios - Saúde Bucal');
 
-fetch('https://www.cliquefarma.com.br/saude-bucal/antisseptico-bucal')
-  .then(
-    async (respostaDoServidor) => {
-        if(respostaDoServidor.ok){   
-            
-            return respostaDoServidor.text();
-        }
-        throw new Error('Não foi possível se conectar ao servidor!');
-        }
-    )
-    .then((html) => {
+    console.log(saudeBucal.length);
+}
 
-        console.log(obeterOutrosProdutos(html, 'Antisséptico Bucal'));
-        console.log('\n\n');
-
-    })
-    .catch(err =>{
-        console.log(err);
-});
-
-fetch('https://www.cliquefarma.com.br/saude-bucal/creme-dental')
-  .then(
-    async (respostaDoServidor) => {
-        if(respostaDoServidor.ok){   
-            
-            return respostaDoServidor.text();
-        }
-        throw new Error('Não foi possível se conectar ao servidor!');
-        }
-    )
-    .then((html) => {
-
-        console.log(obeterOutrosProdutos(html, 'Creme Dental'));
-        console.log('\n\n');
-
-    })
-    .catch(err =>{
-        console.log(err);
-});
-
-fetch('https://www.cliquefarma.com.br/saude-bucal/enxaguatorio')
-  .then(
-    async (respostaDoServidor) => {
-        if(respostaDoServidor.ok){   
-            
-            return respostaDoServidor.text();
-        }
-        throw new Error('Não foi possível se conectar ao servidor!');
-        }
-    )
-    .then((html) => {
-
-        console.log(obeterOutrosProdutos(html, 'Enxaguatório'));
-        console.log('\n\n');
-
-    })
-    .catch(err =>{
-        console.log(err);
-});
-
-fetch('https://www.cliquefarma.com.br/saude-bucal/escova-dental')
-  .then(
-    async (respostaDoServidor) => {
-        if(respostaDoServidor.ok){   
-            
-            return respostaDoServidor.text();
-        }
-        throw new Error('Não foi possível se conectar ao servidor!');
-        }
-    )
-    .then((html) => {
-
-        console.log(obeterOutrosProdutos(html, 'Escovas de Dente'));
-        console.log('\n\n');
-
-    })
-    .catch(err =>{
-        console.log(err);
-});
-
-
-fetch('https://www.cliquefarma.com.br/saude-bucal/fixadores-de-protese')
-  .then(
-    async (respostaDoServidor) => {
-        if(respostaDoServidor.ok){   
-            
-            return respostaDoServidor.text();
-        }
-        throw new Error('Não foi possível se conectar ao servidor!');
-        }
-    )
-    .then((html) => {
-
-        console.log(obeterOutrosProdutos(html, 'Fixadores de Protese'));
-        console.log('\n\n');
-
-    })
-    .catch(err =>{
-        console.log(err);
-});
-
-
+main();
