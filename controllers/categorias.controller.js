@@ -1,5 +1,4 @@
-const { Categorias } = require('../models/categorias.model');
-const { Videos } = require('../models/videos.model');
+const { Categorias, Produtos } = require('../models/');
 
 exports.create = (req, res) => {
     
@@ -62,7 +61,7 @@ exports.update = (req, res) => {
                 message: 'Categoria was updated successfully'
             });
         }else{
-            res.send({});
+            res.send('Categoria com ');
         }
 
     })
@@ -120,18 +119,18 @@ exports.deleteAll =  (req,res) => {
     });
 };
 
-exports.getCategoriasWithVideos =  (req,res) => {
+exports.getCategoriasWithProdutos =  (req,res) => {
 
     console.log(req.params);
     
-        Categorias.findAll({ include: Videos })
+        Categorias.findAll({ include: Produtos })
         .then(data => {
             console.log('\nTESTANDO: \n' + data);
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                    message: err.message || 'Some error occurred while retrieving Categorias with Videos'
+                    message: err.message || 'Some error occurred while retrieving Categorias with Produtos'
             });
         });
 }

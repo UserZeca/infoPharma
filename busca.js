@@ -8,8 +8,10 @@ const { JSDOM } = require('jsdom');
 
 let medicamentos = [];
 let dermocosmeticos = [];
-let perfumaria = [];
 let saudeBucal = [];
+let perfumaria = [];
+
+const ENUMERATE = {medicamentos: 1, dermocosmeticos: 2, saudeBucal: 3, perfumaria: 4};
 
 const NUMERO_DE_PAGINAS = 10;
 const categorias = {
@@ -73,13 +75,14 @@ function obterMedicamento(DOM,subcategoria) {
                 fabricante: fabricante[i].textContent,
                 principioAtivo: principioAtivo[i].title,
                 preco: media,
+                categoriaId: ENUMERATE.medicamentos
             })
         }
 
     return medicamentos;
 }
 
- function obterOutrosProdutos(DOM,subcategoria) {
+ function obterOutrosProdutos(DOM,subcategoria, enumerate) {
 
      const dom = new JSDOM(DOM);
         let produtos = [];
@@ -112,6 +115,7 @@ function obterMedicamento(DOM,subcategoria) {
                 subcategoria: subcategoria,
                 nome: nome[i].textContent,
                 preco: media ,
+                categoriaId: enumerate
             })
         }
 
@@ -171,7 +175,7 @@ async function buscaDadosDermocosmeticos(urlDeDestino, maxPaginas, subCategoria)
                 }
             )
             .then(async (html) => {
-                dermocosmeticos.push(obterOutrosProdutos(html, subCategoria));
+                dermocosmeticos.push(obterOutrosProdutos(html, subCategoria, ENUMERATE.dermocosmeticos));
             })
             .catch(err =>{
                 console.log(err);
@@ -202,7 +206,7 @@ async function buscaDadosSaudeBucal(urlDeDestino, maxPaginas, subCategoria){
                 }
             )
             .then(async (html) => {
-                saudeBucal.push(obterOutrosProdutos(html, subCategoria));
+                saudeBucal.push(obterOutrosProdutos(html, subCategoria, ENUMERATE.saudeBucal));
             })
             .catch(err =>{
                 console.log(err);
@@ -233,7 +237,7 @@ async function buscaDadosPerfumaria(urlDeDestino, maxPaginas, subCategoria){
                 }
             )
             .then(async (html) => {
-                perfumaria.push(obterOutrosProdutos(html, subCategoria));
+                perfumaria.push(obterOutrosProdutos(html, subCategoria, ENUMERATE.perfumaria));
             })
             .catch(err =>{
                 console.log(err);
@@ -305,14 +309,14 @@ async function main(){
         }
     }
     
-     for (var element of saudeBucal){
+     for (var element of perfumaria){
         for(var i in element){
              categorias.categorias[3].dados.push(element[i]);
         }
      }
 
      
-   salvarDadosBase(categorias,'./src/data/dbBuild.json', 'Medicamentos');
+   salvarDadosBase(categorias,'./src/data/dbBuild.json');
   
 }
 

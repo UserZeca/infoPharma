@@ -3,6 +3,7 @@ const data = require('./data/dbTeste.json');
 
 // _____________ Conexão com o Banco de Dados _________________
 
+
 const sequelize = new Sequelize('test', 'root', '', {
     host: '127.0.0.1',
     dialect: 'mysql',
@@ -87,33 +88,33 @@ Categorias.init({
 }, {
   // Other model options go here
   sequelize, // We need to pass the connection instance
-  modelName: 'categorias' // We need to choose the model name
+  modelName: 'Categorias' // We need to choose the model name
 });
 
 
 
 // ______________Classe de Vídeos___________________
 
-class Videos extends Model {}
+class Produtos extends Model {}
 
-Videos.init({
+Produtos.init({
 
     createdAt: {
         allowNull: false,
         defaultValue: Sequelize.fn('now'),
         type: Sequelize.DATE
     }, 
-    titulo: {
+    nome: {
         allowNull: false,
         type: Sequelize.STRING,
         unique: true,
         validate: {
             notEmpty: {
-                msg: '[titulo] This field cannot be empty'
+                msg: '[nome] This field cannot be empty'
             },
             len: {
                 args: [3, 150],
-                msg: '[titulo] This field must be between four and thirty characters'
+                msg: '[nome] This field must be between four and thirty characters'
             }       
         }
     },
@@ -131,23 +132,34 @@ Videos.init({
                 msg: '[url] This field cannot be empty'
             },
         }       
+    },
+
+    valor: {
+        allowNull: false,
+        type: DataTypes.FLOAT,
+        validate: {
+            notEmpty: {
+                msg: '[url] This field cannot be empty'
+            },
+        }
+
     }
   
 }, {
   // Other model options go here
   sequelize, // We need to pass the connection instance
-  modelName: 'Videos' // We need to choose the model name
+  modelName: 'produtos' // We need to choose the model name
 });
 
 
 // _________________ Relacionamento das Colunas ____________________
 
-Categorias.hasMany(Videos, {     // Uma categoria tem muitos videos
+Categorias.hasMany(Produtos, {     // Uma categoria tem muitos videos
     foreingKey: 'id',
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
 });
-Videos.belongsTo(Categorias);    // Um video tem uma categoria. Equivalente a : Categorias.hasOne(Videos)
+Produtos.belongsTo(Categorias);    // Um video tem uma categoria. Equivalente a : Categorias.hasOne(Videos)
 
 
 // the defined model is the class itself
@@ -157,13 +169,13 @@ async function loadData(){
         await sequelize // Método que sincroniza todos os models (cada classe que extende a classe Model)
         .sync({force:true})
         .then(() =>{
-            Categorias.bulkCreate(data.categorias)
+            Categorias.bulkCreate(data)
             .then((element) =>{
                 console.log(element);
             });
         })
         .then(() =>{
-            Videos.bulkCreate(data.videos)
+            Produtos.bulkCreate(data)
             .then((element) =>{
                 console.log(element);
             });
@@ -172,9 +184,8 @@ async function loadData(){
     })();
 
     await console.log(Categorias === sequelize.models.Categorias); // true
-    await console.log(Videos === sequelize.models.Videos); // true
+    await console.log(Produtos === sequelize.models.Produtos); // true
 }
-
 
 
 
@@ -191,10 +202,10 @@ async function loadData(){
    [ ]
 */
 
-
+/*
 async function getCategorias(){
  
-    const categorias = await Categorias.findAll()
+    const Categorias = await Categorias.findAll()
     .then((c)=>{
         
         let arrayData = []
@@ -210,7 +221,7 @@ async function getCategorias(){
         return arrayData;  // Resolver: Conseguir receber somente os resultados das promisses
     })
     .catch(()=>{
-        console.log('Erro ao tentar obter as categorias');
+        console.log('Erro ao tentar obter as Categorias');
     
     });
 
@@ -225,7 +236,7 @@ async function getCategorias(){
 async function getCategoriasWithVideos(){
     
     // console.log(JSON.stringify(categoriasWithVideos, null, 2));
-    const categoriasWithVideos = await Categorias.findAll({ include: Videos })
+    const subCateWithVideos = await Categorias.findAll({ include: Videos })
     .then((c)=>{
 
         //console.log(c[0].dataValues.Videos);
@@ -254,7 +265,7 @@ async function getCategoriasWithVideos(){
 
        // console.log(c[0].dataValues)
         //return arrayData;  // Resolver: Conseguir receber somente os resultados das promisses
-    
+    /*
     })
     .catch(()=>{
         console.log('Erro ao tentar obter as categorias');

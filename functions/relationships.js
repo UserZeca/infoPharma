@@ -4,6 +4,7 @@ async function oneToMany(ReferenceElement, Element, foreingKey, onUpdate='CASCAD
         foreingKey: foreingKey,
         onUpdate: onUpdate,
         onDelete: onDelete,
+        allowNull: false
     });
     Element.belongsTo(ReferenceElement);
 }

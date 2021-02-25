@@ -48,9 +48,10 @@ app.get('/', (req, res) => {
 });
 
 
+// Colocando as rotas *** 
 require('./routes/categorias.routes')(app);
-require('./routes/categoriasWithVideos.routes')(app);
-require('./routes/videos.routes')(app);
+require('./routes/categoriasWithProdutos.routes')(app);
+require('./routes/produtos.routes')(app);
 
 
 const PORT = process.env.PORT || 8080;
