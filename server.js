@@ -5,9 +5,6 @@ const { sequelize } = require('./models/');
  
 const app = express();
 
-
-
-
 // + Conexão do Sequelize ___________________________________________
 sequelize.sync();
 
