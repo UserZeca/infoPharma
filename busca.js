@@ -75,7 +75,8 @@ function obterMedicamento(DOM,subcategoria) {
                 fabricante: fabricante[i].textContent,
                 principioAtivo: principioAtivo[i].title,
                 preco: media,
-                categoriaId: ENUMERATE.medicamentos
+                categoriaId: ENUMERATE.medicamentos,
+                emPromocao: false 
             })
         }
 
@@ -115,7 +116,9 @@ function obterMedicamento(DOM,subcategoria) {
                 subcategoria: subcategoria,
                 nome: nome[i].textContent,
                 preco: media ,
-                categoriaId: enumerate
+                categoriaId: enumerate,
+                emPromocao: false 
+
             })
         }
 
@@ -258,8 +261,6 @@ async function buscaDadosPerfumaria(urlDeDestino, maxPaginas, subCategoria){
 
 async function main(){
 
-  
-    
     await buscaDadosMedicamentos('https://www.cliquefarma.com.br/medicamentos/genericos',NUMERO_DE_PAGINAS,'Genéricos');
     await buscaDadosMedicamentos('https://www.cliquefarma.com.br/medicamentos/vitaminas',NUMERO_DE_PAGINAS,'Vitaminas');
     await buscaDadosMedicamentos('https://www.cliquefarma.com.br/medicamentos/digestivo',NUMERO_DE_PAGINAS,'Digestivos');

@@ -1,12 +1,32 @@
 import config from '../config'
 
 const URL_CATEGORIES = `${config.URL_BACKEND}/categorias`;
-const URL_CATEGORIESWITHVIDEOS = `${config.URL_BACKEND}/categoriasWithVideos`;
+const URL_CATEGORIESWITHVIDEOS = `${config.URL_BACKEND}/categoriasWithProdutos`;
+const URL_CATEGORIESWITHPRODUTOSSALES = `${config.URL_BACKEND}/categoriasWithProdutosSales`
 
 
 function getAllWithVideos(){
-    setTimeout(()=>{console.log('Requirindo todas as categorias com os videos...')}, 1000);
+    setTimeout(()=>{console.log('Requirindo todas as categorias com os produtos...')}, 1000);
     return (fetch(`${URL_CATEGORIESWITHVIDEOS}`).then(
+        async (respostaDoServidor) => {
+            console.log(respostaDoServidor.ok);
+            if(respostaDoServidor.ok){   
+                const resposta = await respostaDoServidor.json();
+               // console.log('Testando....');
+                console.log(resposta);
+                return resposta;
+            }
+            throw new Error('Não foi possível se conectar ao servidor!');
+        })
+        .catch((err => {
+            console.log(err);
+        }))
+        );
+}
+
+function getAllWithProdutosSales(){
+    setTimeout(()=>{console.log('Requirindo todas as categorias com os produtos em promoção...')}, 1000);
+    return (fetch(`${URL_CATEGORIESWITHPRODUTOSSALES}`).then(
         async (respostaDoServidor) => {
             console.log(respostaDoServidor.ok);
             if(respostaDoServidor.ok){   
@@ -16,21 +36,32 @@ function getAllWithVideos(){
                 return resposta;
             }
             throw new Error('Não foi possível se conectar ao servidor!');
-        }));
+        })
+        .catch((err => {
+            console.log(err);
+        }))
+    );
 }
 
 function getAll(){
     setTimeout(()=>{console.log('Requirindo todas as categorias...')}, 1000);
-    return fetch(`${URL_CATEGORIES}`).then(
-        async (respostaDoServidor) => {
-            if(respostaDoServidor.ok){   
-                const resposta = await respostaDoServidor.json();
-
-                
-                return resposta;
+    return fetch(`${URL_CATEGORIES}`)
+        .then(
+            async (respostaDoServidor) => {
+                if(respostaDoServidor.ok){   
+                    const resposta = await respostaDoServidor.json();
+                    console.log('Sucesso ao requirir categorias!');
+                    console.log(resposta);
+                    
+                    return resposta;
+                }
+                throw new Error('Não foi possível se conectar ao servidor!');
             }
-            throw new Error('Não foi possível se conectar ao servidor!');
-        });
+        )
+        .catch((err => {
+            console.log(err);
+        }))        
+        ;
 }
 
 function create(objetoDaCategoria){
@@ -58,9 +89,9 @@ function create(objetoDaCategoria){
 }
 
 
-
 export default {
     getAllWithVideos,
+    getAllWithProdutosSales,
     getAll,
     create,
 };

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-export const ProdutoCardGroupContainer = styled.section`
+export const VideoCardGroupContainer = styled.section`
   color: var(--white);
   min-height: 197px;
   margin-left: 5%;
@@ -21,8 +21,8 @@ export const Title = styled.h3`
   padding: 20px;
   background: red;
   line-height: 1;
-  border-bottom: 3px solid ${({ borderBottomColor }) => `${borderBottomColor}`};
   border-radius: 4px;
+
   
 
   @media (max-width: 800px) {
@@ -46,7 +46,7 @@ export const ExtraLink = styled.a`
   }
 `;
 
-export const ProdutoCardList = styled.ul`
+export const VideoCardList = styled.ul`
   margin: 0;
   padding-left: 0;
   padding-bottom: 32px;

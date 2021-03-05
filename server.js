@@ -48,6 +48,7 @@ app.get('/', (req, res) => {
 // Colocando as rotas *** 
 require('./routes/categorias.routes')(app);
 require('./routes/categoriasWithProdutos.routes')(app);
+require('./routes/categoriasWithProdutosSales.routes')(app);
 require('./routes/produtos.routes')(app);
 
 

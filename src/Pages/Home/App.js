@@ -21,7 +21,10 @@ function Home() {
   
   
     useEffect(() => {
-        Data.getAllWithVideos().then( (respostaDoServidor) => {
+        Data.getAllWithProdutosSales().then( (respostaDoServidor) => {
+
+          console.log("resposta do servidor ... zelda");
+          console.log(respostaDoServidor);
           
           setDados(respostaDoServidor);
           loading = false;
@@ -41,7 +44,7 @@ function Home() {
    
    <PageDefault menuWithButtonLink={menuWithButtonLink}>
    
-
+    
       {db.length === 0 && loading === true && (
       
         <Loading />
@@ -53,16 +56,21 @@ function Home() {
           {db.length >= 1 && (
 
             <>
+             {/*
               <BannerMain 
                 videoTitle={db[0].Videos[0].titulo}
                 url={db[0].Videos[0].url}
                 videoDescription={"Será que é possível tornar MARTE em um planeta Habitável? Como iremos fazer isso? Descubra aqui, no Nostalgia Ciência!"}
 
                 />
+             */}
                   
                 {db.map((db, index) =>{
-                    
+                    {/*
                     if(index === 0){
+                    }
+
+                  */}
                   
                         return (
                           <>
@@ -72,14 +80,22 @@ function Home() {
                             />
                           </>
                         )
-                    }
                     
                     return (
+                      
                       <>
+                        
+                      {/*
                         <Carroussel key={db.id}
                             false
                             category={db}
                         />
+
+                      */}
+
+                        <div>
+                            {db.titulo} AAA
+                        </div>
 
                       </>
                     )

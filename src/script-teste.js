@@ -1,7 +1,7 @@
 const data = require('./data/dbBuild.json');
 const { Sequelize, DataTypes, Model } = require('sequelize');
 
-const sequelize = new Sequelize('test', 'root', '', {
+const sequelize = new Sequelize('ifp', 'root', '', {
     host: '127.0.0.1',
     dialect: 'mysql',
     define: {

@@ -1,5 +1,5 @@
 module.exports = {
-    DB: 'test',
+    DB: 'ifp',
     USER: 'root',
     PASSWORD: '',
     HOST: '127.0.0.1',

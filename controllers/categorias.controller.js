@@ -22,11 +22,14 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
     
-    Categorias.findAll({where: req.id})
+    Categorias.findAll()
     .then(data => {
+        console.log('Obtendo todas as categorias')
+        console.log(data);
         res.send(data);
     })
     .catch(err => {
+        console.log("ERROO");
         res.status(500).send({
                 message: err.message || 'Some error occurred while retrieving Categorias'
         });
@@ -61,7 +64,7 @@ exports.update = (req, res) => {
                 message: 'Categoria was updated successfully'
             });
         }else{
-            res.send('Categoria com ');
+            res.send({});
         }
 
     })
@@ -133,4 +136,27 @@ exports.getCategoriasWithProdutos =  (req,res) => {
                     message: err.message || 'Some error occurred while retrieving Categorias with Produtos'
             });
         });
-}
+};
+
+exports.getCategoriasWithProdutosSales =  (req,res) => {
+
+    console.log(req.params);
+    
+        Categorias.findAll({ include: {
+             model: Produtos,
+             where: {
+                 emPromocao: true
+             }
+            
+            }
+        })
+        .then(data => {
+            console.log('\nTESTANDO: \n' + data);
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                    message: err.message || 'Some error occurred while retrieving Categorias with Produtos'
+            });
+        });
+};

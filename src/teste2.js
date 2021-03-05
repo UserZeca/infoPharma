@@ -1,10 +1,12 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
-const data = require('./data/dbTeste.json');
+const data = require('./data/dbBuild.json');
+const { default: categorias } = require('./repositories/categorias');
 
 // _____________ Conexão com o Banco de Dados _________________
 
+console.log(data);
 
-const sequelize = new Sequelize('test', 'root', '', {
+const sequelize = new Sequelize('ifp', 'root', '', {
     host: '127.0.0.1',
     dialect: 'mysql',
     define: {
@@ -104,6 +106,11 @@ Produtos.init({
         defaultValue: Sequelize.fn('now'),
         type: Sequelize.DATE
     }, 
+    emPromocao: {
+        allowNull: false,
+        defaultValue: false,
+        type: DataTypes.BOOLEAN
+    },
     nome: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -163,7 +170,7 @@ Produtos.belongsTo(Categorias);    // Um video tem uma categoria. Equivalente a 
 
 
 // the defined model is the class itself
-//sequelize.sync();     
+// sequelize.sync();     
 async function loadData(){
     (async () => {
         await sequelize // Método que sincroniza todos os models (cada classe que extende a classe Model)
@@ -171,22 +178,27 @@ async function loadData(){
         .then(() =>{
             Categorias.bulkCreate(data)
             .then((element) =>{
+                console.log('Foi');
                 console.log(element);
             });
         })
+        /*
         .then(() =>{
             Produtos.bulkCreate(data)
             .then((element) =>{
+                console.log('Foi');
                 console.log(element);
             });
         
-        }); 
+        });
+        */ 
     })();
 
     await console.log(Categorias === sequelize.models.Categorias); // true
     await console.log(Produtos === sequelize.models.Produtos); // true
 }
 
+loadData();
 
 
 /* [X] Função que retorna todas as categorias

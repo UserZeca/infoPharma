@@ -6,6 +6,7 @@ module.exports = app => {
 
     router.post('/', categorias.create);
     router.get('/', categorias.findAll);
+    //router.get('/promocoes', categorias.getCategoriasWithProdutosSales);
     router.get('/:id', categorias.findOne);
     router.put('/:id', categorias.update);
     router.delete('/:id', categorias.delete);

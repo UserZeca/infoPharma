@@ -63,6 +63,11 @@ Produtos.init({
             },
         }
 
+    },
+    
+    emPromocao: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
     }
   
 }, {

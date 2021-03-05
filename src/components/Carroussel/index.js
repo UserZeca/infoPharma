@@ -1,24 +1,29 @@
 import React from 'react';
-import { VideoCardGroupContainer, Title, ExtraLink } from './styles';
-import VideoCard from './components/VideoCard';
-import Slider, { SliderItem } from './components/Slider';
+import { ProdutoCardGroupContainer, Title, ExtraLink } from './styles';
+import Slider, { SliderItem } from './Slider';
+import ProdutoCard from './ProdutoCard'
+import ConvertStringToHex from './utilitario';
+
+
+
+
 
 function Carroussel({
-  ignoreFirstVideo,
+  ignoreFirstProduto,
   category,
 }) {
   
   const categoryTitle = category.titulo;
   const categoryColor = category.cor;
-  const categoryExtraLink = category.link_extra;
-  const videos = category.Videos;
+  const categoryExtraLink = category.url;
+  const produtos = category.produtos;
 
  
   return (
-    <VideoCardGroupContainer>
+    <ProdutoCardGroupContainer>
       {categoryTitle && (
         <>
-          <Title style={{ backgroundColor: categoryColor || 'red' }}>
+          <Title style={{ backgroundColor: categoryColor || 'red' }} borderBottomColor={`${ConvertStringToHex(categoryColor)}`}>
             {categoryTitle}
           </Title>
           {categoryExtraLink && 
@@ -29,23 +34,28 @@ function Carroussel({
         </>
       )}
       <Slider>
-        {videos.map((video, index) => {
-          if (ignoreFirstVideo && index === 0) {
-            return null;
-          }
+        {produtos.map((produto, index) => {
+            console.log(produto.preco);
 
-          return (
-            <SliderItem key={video.titulo}>
-              <VideoCard
-                videoTitle={video.titulo}
-                videoURL={video.url}
-                categoryColor={categoryColor}
-              />
-            </SliderItem>
-          );
+            if ((ignoreFirstProduto && index === 0) ) {
+                return null;
+            }
+
+            if( index < 10){
+                return (
+                    <SliderItem key={produto.nome}>
+                        <ProdutoCard
+                            produtoTitle={produto.nome}
+                            produtoURL={produto.url}
+                            categoryColor={categoryColor}
+                            produtoPreco={`R$ ${produto.preco}`}
+                        />
+                    </SliderItem>
+                );
+            }
         })}
       </Slider>
-    </VideoCardGroupContainer>
+    </ProdutoCardGroupContainer>
   );
 }
 

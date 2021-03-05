@@ -19,6 +19,25 @@ exports.create = (req, res) => {
     });
 }
 
+exports.findSales = (req, res) => {
+
+    Produtos.findAll({
+        where:{ 
+            emPromocao: true
+        }
+    })
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || 'Some error occurred while retrieving Produtos Sales'
+        })
+
+    })
+
+}
+
 exports.findAll = (req, res) => {
     
     Produtos.findAll({where: req.id})
