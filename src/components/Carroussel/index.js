@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProdutoCardGroupContainer, Title, ExtraLink } from './styles';
+import { ProdutoCardGroupContainer, Title, ExtraLink,ContainerExtraLink  } from './styles';
 import Slider, { SliderItem } from './Slider';
 import ProdutoCard from './ProdutoCard'
 import ConvertStringToHex from './utilitario';
@@ -13,24 +13,26 @@ function Carroussel({
   category,
 }) {
   
+  
   const categoryTitle = category.titulo;
   const categoryColor = category.cor;
   const categoryExtraLink = category.url;
+  const categoryTextoLink = category.text;
   const produtos = category.produtos;
 
- 
+
   return (
     <ProdutoCardGroupContainer>
       {categoryTitle && (
         <>
-          <Title style={{ backgroundColor: categoryColor || 'red' }} borderBottomColor={`${ConvertStringToHex(categoryColor)}`}>
-            {categoryTitle}
-          </Title>
-          {categoryExtraLink && 
-            <ExtraLink href={categoryExtraLink.url} target="_blank">
-              {categoryExtraLink.text}  
-            </ExtraLink>
-          }
+          <ExtraLink href={categoryExtraLink} target="_blank">
+            <Title style={{ backgroundColor: categoryColor || 'red' }} borderBottomColor={`${ConvertStringToHex(categoryColor)}`}>
+             
+                {categoryTitle}
+
+            </Title>
+          </ExtraLink>
+          
         </>
       )}
       <Slider>
@@ -41,7 +43,7 @@ function Carroussel({
                 return null;
             }
 
-            if( index < 10){
+           
                 return (
                     <SliderItem key={produto.nome}>
                         <ProdutoCard
@@ -52,10 +54,20 @@ function Carroussel({
                         />
                     </SliderItem>
                 );
-            }
         })}
       </Slider>
-    </ProdutoCardGroupContainer>
+         
+
+            {categoryTextoLink && (
+                <ContainerExtraLink justifyContent="flex-end">
+                  <ExtraLink href={categoryExtraLink} target="_blank" margin="30px 10px 0px 0px" color="black" >
+                      {categoryTextoLink}
+                  </ExtraLink>
+                </ContainerExtraLink>
+              )
+            }
+          
+      </ProdutoCardGroupContainer>
   );
 }
 

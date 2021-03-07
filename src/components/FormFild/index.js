@@ -5,12 +5,11 @@ import PropTypes from 'prop-types';
 const Label = styled.label``;
 
 Label.Text = styled.span`
-  color: #E5E5E5;
+  color: var(--black);
   height: 57px;
   position: absolute; 
   top: 0;
   left: 16px;
-  
   display: flex;
   align-items: center;
   
@@ -27,8 +26,7 @@ Label.Text = styled.span`
 
 
 const Input = styled.input`
-  background: #53585D;
-  color: #F5F5F5;
+  background: wheat;
   display: block;
   height: 57px;
   font-size: 18px;
@@ -36,8 +34,7 @@ const Input = styled.input`
   outline: 0;
   border: 0;
   border-top: 4px solid transparent;
-  border-bottom: 4px solid #53585D;
-  
+  border-bottom: 4px solid var(--primary);
 
   padding: 16px 16px;
   margin-bottom: 45px;

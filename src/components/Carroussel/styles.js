@@ -31,10 +31,23 @@ export const Title = styled.h3`
   }
 `;
 
+export const ContainerExtraLink = styled.div`
+    display: flex;
+    justify-content: ${({ justifyContent }) => `${justifyContent}` || 'normal'};
+`;
+
+
 export const ExtraLink = styled.a`
-  margin-left: 16px;
-  text-decoration: none;
+
+  color: ${({color}) => `${color}`};
+  display: flex;
+  font-weight: 600;
+  cursor: pointer;
+
+  margin: ${({margin}) => `${margin}`};
   transition: opacity .3s;
+  text-decoration: none;
+
   &:hover,
   &:focus {
     opacity: .5;
@@ -43,6 +56,7 @@ export const ExtraLink = styled.a`
     display: block;
     margin-bottom: 16px;
     margin-left: 0;
+    font-size: 14px;
   }
 `;
 

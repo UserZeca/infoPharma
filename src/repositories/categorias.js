@@ -5,7 +5,7 @@ const URL_CATEGORIESWITHVIDEOS = `${config.URL_BACKEND}/categoriasWithProdutos`;
 const URL_CATEGORIESWITHPRODUTOSSALES = `${config.URL_BACKEND}/categoriasWithProdutosSales`
 
 
-function getAllWithVideos(){
+function getAllWithProdutos(){
     setTimeout(()=>{console.log('Requirindo todas as categorias com os produtos...')}, 1000);
     return (fetch(`${URL_CATEGORIESWITHVIDEOS}`).then(
         async (respostaDoServidor) => {
@@ -90,7 +90,7 @@ function create(objetoDaCategoria){
 
 
 export default {
-    getAllWithVideos,
+    getAllWithProdutos,
     getAllWithProdutosSales,
     getAll,
     create,

@@ -11,7 +11,7 @@ let dermocosmeticos = [];
 let saudeBucal = [];
 let perfumaria = [];
 
-const ENUMERATE = {medicamentos: 1, dermocosmeticos: 2, saudeBucal: 3, perfumaria: 4};
+const ENUMERATE = {medicamentos: 1, dermocosmeticos: 2,perfumaria: 3 , saudeBucal: 4};
 
 const NUMERO_DE_PAGINAS = 10;
 const categorias = {
@@ -19,7 +19,7 @@ const categorias = {
         { titulo: 'Medicamentos',cor:'#9cd33b', text:'Ver mais medicamentos',url: '/produtos/medicamentos', dados: [] },
         { titulo: 'Dermocosmeticos', cor:'#121691', text: 'Ver mais dermocosmeticos',url:'/produtos/dermocosmeticos', dados: [] },
         { titulo: 'Perfumaria',cor:'#6BD1FF', text: 'Ver mais produtos de perfumaria',url:'/produtos/perfumaria', dados: [] },
-        { titulo: 'Saúde Bucal',cor:'orange', text:'Ver mais produtos de saúde bucal ', url:'/produtos/saudebucal',dados: [] }
+        { titulo: 'Saúde Bucal',cor:'#ffa500', text:'Ver mais produtos de saúde bucal ', url:'/produtos/saudebucal',dados: [] }
     ]
 };
 
@@ -275,6 +275,13 @@ async function main(){
     await buscaDadosDermocosmeticos('https://www.cliquefarma.com.br/dermocosmeticos/cabelos',NUMERO_DE_PAGINAS,'Cabelos');
     await buscaDadosDermocosmeticos('https://www.cliquefarma.com.br/dermocosmeticos/antienvelhecimento-antirrugas',NUMERO_DE_PAGINAS,'Antirrugas');
     
+    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/unhas',NUMERO_DE_PAGINAS,'Unhas');
+    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/tintura',NUMERO_DE_PAGINAS,'Tintura');
+    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/shampoo',NUMERO_DE_PAGINAS,'Shampoo');
+    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/protetores-e-bronzeadores',NUMERO_DE_PAGINAS,'Protetores & Bronzeadores');
+    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/desodorantes',NUMERO_DE_PAGINAS,'Desodorantes');
+    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/acessorios',NUMERO_DE_PAGINAS,'Acessórios - Perfumaria');
+
     await buscaDadosSaudeBucal('https://www.cliquefarma.com.br/saude-bucal/fixadores-de-protese', NUMERO_DE_PAGINAS, 'Fixadores de Protese');
     await buscaDadosSaudeBucal('https://www.cliquefarma.com.br/saude-bucal/escova-dental', NUMERO_DE_PAGINAS, 'Escovas de Dente');
     await buscaDadosSaudeBucal('https://www.cliquefarma.com.br/saude-bucal/enxaguatorio', NUMERO_DE_PAGINAS, 'Enxaguatório');
@@ -283,14 +290,6 @@ async function main(){
     await buscaDadosSaudeBucal('https://www.cliquefarma.com.br/saude-bucal/acessorios', NUMERO_DE_PAGINAS, 'Acessórios - Saúde Bucal');
 
     
-    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/unhas',NUMERO_DE_PAGINAS,'Unhas');
-    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/tintura',NUMERO_DE_PAGINAS,'Tintura');
-    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/shampoo',NUMERO_DE_PAGINAS,'Shampoo');
-    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/protetores-e-bronzeadores',NUMERO_DE_PAGINAS,'Protetores & Bronzeadores');
-    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/desodorantes',NUMERO_DE_PAGINAS,'Desodorantes');
-    await buscaDadosPerfumaria('https://www.cliquefarma.com.br/perfumaria/acessorios',NUMERO_DE_PAGINAS,'Acessórios - Perfumaria');
-
-
 
    for (var element of medicamentos){
        for(var i in element){
@@ -304,17 +303,18 @@ async function main(){
         }
     }
     
-    for (var element of saudeBucal){
+    
+    for (var element of perfumaria){
         for(var i in element){
-             categorias.categorias[2].dados.push(element[i]);
+            categorias.categorias[2].dados.push(element[i]);
         }
     }
-    
-     for (var element of perfumaria){
+
+    for (var element of saudeBucal){
         for(var i in element){
              categorias.categorias[3].dados.push(element[i]);
         }
-     }
+    }
 
      
    salvarDadosBase(categorias,'./src/data/dbBuild.json');

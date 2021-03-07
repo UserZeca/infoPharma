@@ -3,7 +3,7 @@ import styled from 'styled-components'
 // Tag de Template string
 const Button = styled.button`
     color: var(--white);
-    background-color: var(--black);
+    background-color: var(--primary);
     border: 1px solid var(--white);
     border-radius: 4px;
     font-size: 16px;

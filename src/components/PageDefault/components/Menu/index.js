@@ -15,9 +15,9 @@ function Menu({menuWithButtonLink}){
                 <LogoImg src={Logo} alt="zecaflix logo" />
             </Link>
             {menuWithButtonLink === true && (
-               <Link to="/cadastro/video">
+               <Link to="/cadastro/produto">
                     <Button>
-                        Novo vídeo
+                        Novo produto
                     </Button>
                 </Link>
             )}

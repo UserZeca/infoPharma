@@ -3,10 +3,14 @@ const { Produtos } = require('../models/produtos.model');
 exports.create = (req, res) => {
     
     let produto = {
-        titulo: req.body.titulo,
+        nome: req.body.nome,
         url: req.body.url,
-        categoriaId: req.body.categoriaId
+        categoriaId: req.body.categoriaId,
+        emPromocao: req.body.emPromocao,
+        preco: req.body.preco,
+        subcategoria: req.body.subcategoria
     }
+
 
     Produtos.create(produto)
     .then(data => {
@@ -39,6 +43,8 @@ exports.findSales = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
+
+   
     
     Produtos.findAll({where: req.id})
     .then(data => {

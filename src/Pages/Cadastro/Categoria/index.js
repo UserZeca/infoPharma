@@ -99,28 +99,36 @@ function CadastroCategoria(){
 
                 
                     <FormField
-                     label='Nome da Categoria:' 
-                     value={valores.titulo} 
-                     name='titulo' 
-                     type='text'
-                     onChange={ handleDoValorCampo }
+                        label='*Nome da Categoria:' 
+                        value={valores.titulo} 
+                        name='titulo' 
+                        type='text'
+                        onChange={ handleDoValorCampo }
                      />
                      
                     <FormField
-                     label='Descrição:'
-                     value={valores.descricao}
-                     name='descricao' 
-                     type='textarea'
-                     onChange={ handleDoValorCampo }
+                        label='*Descrição:'
+                        value={valores.descricao}
+                        name='descricao' 
+                        type='textarea'
+                        onChange={ handleDoValorCampo }
                      />
 
                     <FormField
-                     label='Cor:' 
-                     value={valores.cor} 
-                     name='cor' 
-                     type='color' 
-                     onChange={ handleDoValorCampo }
+                        label='*Cor:' 
+                        value={valores.cor} 
+                        name='cor' 
+                        type='color' 
+                        onChange={ handleDoValorCampo }
                      />
+
+                    <FormField
+                        label='URL da Página da Categoria:' 
+                        value={valores.url} 
+                        name='url' 
+                        type='text' 
+                        onChange={ handleDoValorCampo }
+                    />
 
                     <FormField id='Checkbox'
                         label='Link adicional'
@@ -142,38 +150,33 @@ function CadastroCategoria(){
                                 onChange={ handleDoValorCampo }
                             />
 
-                            <FormField
-                                label='URL do Link Extra:' 
-                                value={valores.url} 
-                                name='url' 
-                                type='text' 
-                                onChange={ handleDoValorCampo }
-                            />
                         </>
 
                     )}
 
 
                     <ContainerBox> 
+
+                        <ItenBox>
+                            <ButtonLink to="/"> 
+                                Home
+                            </ButtonLink>
+                            <ButtonLink to="/cadastro/produto"> 
+                                Cadastrar Produto
+                            </ButtonLink>
+                        </ItenBox>
+
                         <ItenBox>  
                             <Button type="submit"
                                 disabled={
-                                     (valores.titulo === '' || valores.descricao === '') 
-                                     || (checked === true && (valores.textLinkExtra === '' || valores.url === '') )  
+                                     (valores.titulo === '' || valores.descricao === '' || valores.url === ''
+                                     || valores.cor === '') || (checked === true && (valores.textLinkExtra === ''))  
                                 }
                              >
                                 Cadastrar
                             </Button>
                         </ItenBox>
                         
-                        <ItenBox>
-                            <ButtonLink to="/"> 
-                                Home
-                            </ButtonLink>
-                            <ButtonLink to="/cadastro/video"> 
-                                Cadastrar Vídeo
-                            </ButtonLink>
-                        </ItenBox>
                     </ContainerBox>
 
             </form>

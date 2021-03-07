@@ -8,13 +8,12 @@ class Produtos extends Model {}
 Produtos.init({
 
     createdAt: {
-        allowNull: false,
         defaultValue: Sequelize.fn('now'),
         type: Sequelize.DATE
     }, 
     nome: {
-        allowNull: false,
         type: Sequelize.STRING,
+        allowNull: false,
         validate: {
             notEmpty: {
                 msg: '[nome] This field cannot be empty'
@@ -26,8 +25,9 @@ Produtos.init({
         }
     },
     subcategoria: {
-        allowNull: false,
         type: Sequelize.STRING,
+        defaultValue: 'Geral',
+        allowNull: false,
         validate: {
             notEmpty: {
                 msg: '[nome] This field cannot be empty'
@@ -39,13 +39,11 @@ Produtos.init({
         }
     },
     updatedAt: {
-        allowNull: false,
         defaultValue: Sequelize.fn('now'),
         type: Sequelize.DATE
     },
 
     url: {
-        allowNull: false,
         type: Sequelize.STRING,
         validate: {
             notEmpty: {
@@ -55,7 +53,6 @@ Produtos.init({
     },
 
     preco: {
-        allowNull: false,
         type: DataTypes.FLOAT,
         validate: {
             notEmpty: {
@@ -66,7 +63,6 @@ Produtos.init({
     },
     
     emPromocao: {
-        allowNull: false,
         type: DataTypes.BOOLEAN,
     }
   

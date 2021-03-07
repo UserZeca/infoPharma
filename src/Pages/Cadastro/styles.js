@@ -29,9 +29,6 @@ const ItenBox = styled.div`
     display: block;
 `;
 
-
-
-
 const WrapperButton = styled.div`
     
     box-sizing: content-box;
@@ -60,13 +57,11 @@ function ButtonLink(props){
     return (
 
         <>        
-            <WrapperButton>
-                <Button as={Link} to={props.to} >
+            <Button as={Link} to={props.to} >
+                <WrapperButton>
                     {props.children}
-                </Button>
-            
-            </WrapperButton>
-
+                </WrapperButton>
+            </Button>
         </>
     );   
 }

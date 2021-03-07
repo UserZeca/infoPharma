@@ -14,7 +14,8 @@ function useForm(valoresIniciais){
     }
 
     function handleDoValorCampo(e) {
-
+        console.log('HOOKs');
+        console.log(e.target.value);
         setValor(
 
             e.target.getAttribute('name'),

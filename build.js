@@ -1,6 +1,28 @@
 const data = require('./src/data/dbBuild.json');
 const { Sequelize, DataTypes, Model } = require('sequelize');
 
+const categorias = [];
+const produtos = [];
+
+function init(){
+
+    for(let i=0; i< data.categorias.length; i++){
+
+        categorias.push({
+            titulo: data.categorias[i].titulo,
+            url: data.categorias[i].url,
+            text: data.categorias[i].text,
+            cor: data.categorias[i].cor
+        });
+        produtos.push(data.categorias[i].dados);
+
+    }
+}
+
+
+
+
+
 const sequelize = new Sequelize('ifp', 'root', '', {
     host: '127.0.0.1',
     dialect: 'mysql',
@@ -87,6 +109,7 @@ Categorias.init({
   sequelize, // We need to pass the connection instance
   modelName: 'categorias' // We need to choose the model name
 });
+
 
 
 
@@ -178,25 +201,29 @@ Produtos.belongsTo(Categorias);    // Um video tem uma categoria. Equivalente a 
 
 async function loadData(){
     (async () => {
+        await init();
         await sequelize // Método que sincroniza todos os models (cada classe que extende a classe Model)
         .sync({force:true})
-        .then(() =>{
-            Categorias.bulkCreate(data.categorias)
+        .then( () =>{
+             Categorias.bulkCreate(categorias)
             .then((element) =>{
                 console.log(element);
             });
         })
     
         .then(() =>{
-            for(let i=0 ; i< data.categorias.length; i++){
-                Produtos.bulkCreate(data.categorias[i].dados)
-                .then((element) =>{
-                    console.log(element);
+
+            for(let i =0; i < produtos.length ; i++){
+
+                Produtos.bulkCreate(produtos[i])
+                .then((e) =>{
+                    console.log(e);
                 })
                 .catch(err =>{
                     console.log(err);
                 })
             }
+            
         });
         
     })();
@@ -205,5 +232,7 @@ async function loadData(){
   //  await console.log(Produtos === sequelize.models.Produtos); // true
 }
 
+//init();
+//console.log(produtos);
 
 loadData();
