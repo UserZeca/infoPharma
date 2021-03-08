@@ -13,6 +13,7 @@ export const FooterBase = styled.footer`
   text-align: center;
   position: relative;
   width: 100%;
+  margin-bottom: 0px !important;
 
   
 
