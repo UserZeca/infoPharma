@@ -1,6 +1,7 @@
 import React from 'react';
 import ContainerTable from './styles';
 import categoriesRepository from '../../repositories/categorias';
+import { useHistory } from 'react-router-dom';
 
 
 import PropTypes from 'prop-types';
@@ -25,6 +26,18 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import UpdateIcon from '@material-ui/icons/Update';
 import FilterListIcon from '@material-ui/icons/FilterList';
+
+
+
+
+
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 
@@ -176,10 +189,70 @@ const useToolbarStyles = makeStyles((theme) => ({
   },
 }));
 
-const EnhancedTableToolbar = (props) => {
-  const classes = useToolbarStyles();
-  const { numSelected } = props;
+  
+  
 
+  const EnhancedTableToolbar = (props) => {
+  
+  const classes = useToolbarStyles();
+  const { numSelected , selected, history} = props;
+
+  const [open, setOpen] = React.useState(false);
+
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+  const remove = (objetoCategoria) =>{
+
+    categoriesRepository.deleteCategoria(objetoCategoria)
+    .then((res)=>{        
+        alert(`Sucesso ao remover categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`)  
+        return res;
+    })
+    .catch(err =>{    
+      alert(`Erro ao remover categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`);
+      console.log(err);
+    })
+  }
+
+  const update = (objetoCategoria) =>{
+
+    categoriesRepository.updateCategoria(objetoCategoria)
+    .then((res)=>{        
+        alert(`Sucesso ao atualizar categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`)  
+        return res;
+    })
+    .catch(err =>{    
+      alert(`Erro ao atualizar categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`);
+      console.log(err);
+    })
+  }
+
+
+  var previusData;
+
+  if(selected.length <= 1){
+    console.log('Alvo');
+    previusData = (rows.filter(row => {
+      return row.id == selected;
+    }))[0];
+
+    console.log(previusData);
+
+  }
+    
+
+  console.log('OPÇÂO');
+  console.log(selected);
+
+  //console.log(open);
   return (
     <Toolbar
       className={clsx(classes.root, {
@@ -188,7 +261,7 @@ const EnhancedTableToolbar = (props) => {
     >
       {numSelected > 0 ? (
         <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-          {numSelected} selected
+          {numSelected} {numSelected > 1 ? 'itens selecionados': 'item selecionado'}
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
@@ -198,18 +271,104 @@ const EnhancedTableToolbar = (props) => {
 
       {numSelected > 0 ? (
         <>
-            <Tooltip title="Delete">
-                <IconButton aria-label="delete">
+            <Tooltip title="Remover">
+                <IconButton 
+                    aria-label="remover" 
+                    onClick={() => { 
+                          selected.map((item)=>{
+                             var dataRows = rows.filter(row => {
+                              return row.id == item;
+                            });
+                             
+                            for(let i in dataRows){
+                                console.log(remove(dataRows[i]));
+                            }
+                        }) 
+                      }
+                     }>
                     <DeleteIcon />
                 </IconButton>
             </Tooltip>
-            <Tooltip title="Update">
-                <IconButton aria-label="update">
-                    <UpdateIcon />
-                </IconButton>
-            </Tooltip>
+            {selected.length <= 1 && (
+              <Tooltip title="Atualizar">
+                  <IconButton 
+                      aria-label="atualizar" 
+                      onClick={handleOpen}>
+                      <UpdateIcon />
+                  </IconButton>
+              </Tooltip>
+            )} 
+          <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title">Edição de categoria</DialogTitle>
+            <DialogContent>
+                <DialogContentText>
+                  Abaixo insira as novas informações para a categoria:
+                </DialogContentText>
 
-        </>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="titulo"
+                  label="Titulo"
+                  type="text"
+                  placeholder={previusData.titulo}
+                  fullWidth
+                />
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="descricao"
+                    label="Descrição"
+                    placeholder={previusData.text}
+                    type="text"
+                    fullWidth
+                />
+
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="cor"
+                  label="*Cor"
+                  type="color"
+                  fullWidth
+                />
+
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="link"
+                  label="Link"
+                  placeholder={previusData.link}
+                  type="text"
+                  fullWidth
+                />
+
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="text"
+                  label="Texto do link extra"
+                  placeholder={previusData.link}
+                  type="text"
+                  fullWidth
+                />
+                
+            </DialogContent>
+            
+            <DialogActions>
+              <Button onClick={handleClose} color="primary">
+                Cancelar
+              </Button>
+              <Button onClick={()=> {
+                    update(previusData);
+                    handleClose();
+                }} 
+                color="primary">
+                Salvar
+              </Button>
+            </DialogActions>
+          </Dialog>
+      </>
       ) : (
         <Tooltip title="Filter list">
           <IconButton aria-label="filter list">
@@ -218,6 +377,7 @@ const EnhancedTableToolbar = (props) => {
         </Tooltip>
       )}
     </Toolbar>
+
   );
 };
 
@@ -264,8 +424,9 @@ export default function EnhancedTable(data) {
   console.log(data.headCells);
   //console.log(data.rows);
   
-
+  const history = useHistory(); 
   const classes = useStyles();
+
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('id');
   const [selected, setSelected] = React.useState([]);
@@ -306,7 +467,10 @@ export default function EnhancedTable(data) {
       );
     }
 
+
     console.log(`Clicou em ${name}`);
+    console.log(`${newSelected}`);
+
     setSelected(newSelected);
   };
 
@@ -335,7 +499,7 @@ export default function EnhancedTable(data) {
   return (
     <ContainerTable className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} selected={selected} history={history}/>
         <TableContainer>
           <Table
             className={classes.table}

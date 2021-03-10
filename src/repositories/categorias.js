@@ -88,9 +88,57 @@ function create(objetoDaCategoria){
 }
 
 
+function deleteCategoria(objetoDaCategoria){
+
+    setTimeout(()=>{console.log('Enviando nova categoria ao servidor...')}, 1000);
+    return fetch(`${URL_CATEGORIES}/${objetoDaCategoria.id}`,{
+        method: 'DELETE',
+        headers: {
+            'Content-type' : 'application/json',
+        },
+        body: JSON.stringify(objetoDaCategoria),
+    })
+    .then(
+        async (respostaDoServidor) => {
+            if(respostaDoServidor.ok){   
+                const resposta = await respostaDoServidor.json();
+                console.log('reposta', resposta);
+
+                return resposta;
+            }
+            throw new Error('Não foi possível se conectar ao servidor!');
+        });
+}
+
+
+function updateCategoria(objetoDaCategoria){
+
+    setTimeout(()=>{console.log(`Enviando nova categoria ao servidor... ${objetoDaCategoria}`)}, 1000);
+    return fetch(`${URL_CATEGORIES}/${objetoDaCategoria.id}`,{
+        method: 'PUT',
+        headers: {
+            'Content-type' : 'application/json',
+        },
+        body: JSON.stringify(objetoDaCategoria),
+    })
+    .then(
+        async (respostaDoServidor) => {
+            if(respostaDoServidor.ok){   
+                const resposta = await respostaDoServidor.json();
+                console.log('reposta', resposta);
+
+                return resposta;
+            }
+            throw new Error('Não foi possível se conectar ao servidor!');
+        });
+}
+
+
 export default {
     getAllWithProdutos,
     getAllWithProdutosSales,
     getAll,
     create,
+    deleteCategoria,
+    updateCategoria
 };
