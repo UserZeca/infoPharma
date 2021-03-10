@@ -56,14 +56,11 @@ function Home() {
           {db.length >= 1 && (
 
             <>
-             {/*
               <BannerMain 
-                videoTitle={db[0].Videos[0].titulo}
-                url={db[0].Videos[0].url}
+          
                 videoDescription={"Será que é possível tornar MARTE em um planeta Habitável? Como iremos fazer isso? Descubra aqui, no Nostalgia Ciência!"}
 
                 />
-             */}
                   
                 {db.map((db, index) =>{
                     {/*

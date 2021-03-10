@@ -15,14 +15,15 @@ export default function BannerMain({
   videoDescription,
   url,
 }) {
-  const youTubeID = getYouTubeId(url);
-  const bgUrl = `https://img.youtube.com/vi/${youTubeID}/maxresdefault.jpg`;
-
+  //const youTubeID = getYouTubeId(url);
+  //const bgUrl = `https://img.youtube.com/vi/${youTubeID}/maxresdefault.jpg`;
+  const src = `${process.env.PUBLIC_URL}/img/banner.jpg`
   return (
-    <BannerMainContainer backgroundImage={bgUrl}>
-      <ContentAreaContainer>
+    <BannerMainContainer backgroundImage={src}>
+      {/*
+        <ContentAreaContainer>
         <ContentAreaContainer.Item>
-          <ContentAreaContainer.Title>
+         {} <ContentAreaContainer.Title>
             {videoTitle}
           </ContentAreaContainer.Title>
 
@@ -40,6 +41,7 @@ export default function BannerMain({
           </WatchButton>
         </ContentAreaContainer.Item>
       </ContentAreaContainer>
+      */}
     </BannerMainContainer>
   );
 }

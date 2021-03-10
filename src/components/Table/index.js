@@ -1,5 +1,7 @@
 import React from 'react';
 import ContainerTable from './styles';
+import categoriesRepository from '../../repositories/categorias';
+
 
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -30,6 +32,7 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
+/*
 const rows = [
   createData('Cupcake', 305, 3.7, 67, 4.3),
   createData('Donut', 452, 25.0, 51, 4.9),
@@ -45,6 +48,10 @@ const rows = [
   createData('Nougat', 360, 19.0, 9, 37.0),
   createData('Oreo', 437, 18.0, 63, 4.0),
 ];
+*/
+
+var rows = [];
+
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -72,7 +79,9 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const headCells = [
+
+
+const ab = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
   { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
   { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
@@ -80,48 +89,59 @@ const headCells = [
   { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
 
+
+
+var headCells = []; 
+
  function EnhancedTableHead(props) {
   const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
 
-  return (
-    <TableHead>
-      <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            color='primary'
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
-          />
-        </TableCell>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'default'}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <span className={classes.visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </span>
-              ) : null}
-            </TableSortLabel>
+  console.log('Renderizando Head Cells');
+  console.log(headCells.length);
+  headCells.map((e)=>{
+    console.log(e);
+
+  })
+
+    return (
+      <TableHead>
+        <TableRow>
+          <TableCell padding="checkbox">
+            <Checkbox
+              color='primary'
+              indeterminate={numSelected > 0 && numSelected < rowCount}
+              checked={rowCount > 0 && numSelected === rowCount}
+              onChange={onSelectAllClick}
+              inputProps={{ 'aria-label': 'select all desserts' }}
+            />
           </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
+          {headCells.map((headCell) => (
+            <TableCell
+              key={headCell.id}
+              align={headCell.numeric ? 'right' : 'left'}
+              padding={headCell.disablePadding ? 'none' : 'default'}
+              sortDirection={orderBy === headCell.id ? order : false}
+            >
+              <TableSortLabel
+                active={orderBy === headCell.id}
+                direction={orderBy === headCell.id ? order : 'asc'}
+                onClick={createSortHandler(headCell.id)}
+              >
+                {headCell.label}
+                {orderBy === headCell.id ? (
+                  <span className={classes.visuallyHidden}>
+                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                  </span>
+                ) : null}
+              </TableSortLabel>
+            </TableCell>
+          ))}
+        </TableRow>
+      </TableHead>
+    );
 }
 
 EnhancedTableHead.propTypes = {
@@ -172,7 +192,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Nutrition
+          Categorias
         </Typography>
       )}
 
@@ -222,6 +242,7 @@ const useStyles = makeStyles((theme) => ({
     clip: 'rect(0 0 0 0)',
     height: 1,
     margin: -1,
+    padding: '20px',
     overflow: 'hidden',
     padding: 0,
     position: 'absolute',
@@ -230,10 +251,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTable() {
+
+
+export default function EnhancedTable(data) {
+
+  console.log(data);
+  //setDataHeadCells(data.headCells);
+  headCells = data.headCells;
+  //setDataRows(data.rows);
+  rows = data.rows;
+  console.log('Dentro da Table');
+  console.log(data.headCells);
+  //console.log(data.rows);
+  
+
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('id');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -247,8 +281,9 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows.map((n) => n.id);
       setSelected(newSelecteds);
+  
       return;
     }
     setSelected([]);
@@ -271,6 +306,7 @@ export default function EnhancedTable() {
       );
     }
 
+    console.log(`Clicou em ${name}`);
     setSelected(newSelected);
   };
 
@@ -289,7 +325,12 @@ export default function EnhancedTable() {
 
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
+
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
+  console.log('Testando tamanho');
+  console.log(rows.length);
+  console.log(headCells.length);
 
   return (
     <ContainerTable className={classes.root}>
@@ -315,17 +356,17 @@ export default function EnhancedTable() {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
-
+                  
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.id)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -335,13 +376,12 @@ export default function EnhancedTable() {
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
                       </TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+
+                      <TableCell align="left">{row.id}</TableCell>
+                      <TableCell align="left">{row.titulo}</TableCell>
+                      <TableCell align="left">{row.cor}</TableCell>
+                      <TableCell align="left">{row.text}</TableCell>
+                      <TableCell align="left">{row.url}</TableCell>
                     </TableRow>
                   );
                 })}
