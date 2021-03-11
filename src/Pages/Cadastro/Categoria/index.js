@@ -78,10 +78,9 @@ function CadastroCategoria(){
                             id: '',
                             titulo: valores.titulo,
                             cor: valores.cor,
-                            link_extra: {
-                                text: valores.textLinkExtra,
-                                url: valores.url
-                              }
+                            text: valores.textLinkExtra,
+                            url: valores.url
+                              
                           })
                           .then(() =>{
                             history.push('/');

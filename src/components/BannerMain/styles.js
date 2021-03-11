@@ -65,7 +65,7 @@ ContentAreaContainer.Title = styled.h2`
 `;
 
 export const BannerMainContainer = styled.section`
-  height: 80vh;
+  height: 45vh;
   position: relative;
   color: #fff;
   background-image: ${({ backgroundImage }) => `url(${backgroundImage})`}; 
@@ -73,7 +73,7 @@ export const BannerMainContainer = styled.section`
   background-position: center;
   @media (max-width: 800px) {
     height: auto;
-    min-height: 50vh;
+    min-height: 20vh;
   }
   &:after,
   &:before {
@@ -88,11 +88,10 @@ export const BannerMainContainer = styled.section`
   &:before {
     top: 0;
     height: 100%;
-    background: rgba(0,0,0,0.5);
   }
   &:after {
     bottom: 0;
-    background: linear-gradient(0deg, #000000 0%, transparent 100%);
+    background: linear-gradient(0deg, #0e2b65 0%, transparent 100%);
   }
 `;
 

@@ -113,7 +113,9 @@ function deleteCategoria(objetoDaCategoria){
 
 function updateCategoria(objetoDaCategoria){
 
-    setTimeout(()=>{console.log(`Enviando nova categoria ao servidor... ${objetoDaCategoria}`)}, 1000);
+    setTimeout(()=>{console.log(`Enviando nova categoria ao servidor... `)}, 1000);
+    setTimeout(()=>{console.log(`${JSON.stringify(objetoDaCategoria)}`)}, 1000);
+
     return fetch(`${URL_CATEGORIES}/${objetoDaCategoria.id}`,{
         method: 'PUT',
         headers: {

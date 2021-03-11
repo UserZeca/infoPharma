@@ -1,8 +1,8 @@
-import React from 'react';
+import React , { useState } from 'react';
 import ContainerTable from './styles';
-import categoriesRepository from '../../repositories/categorias';
+import categoriesRepository from '../../../../repositories/categorias';
 import { useHistory } from 'react-router-dom';
-
+import useForm from '../../../../hooks';
 
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -106,7 +106,7 @@ const ab = [
 
 var headCells = []; 
 
- function EnhancedTableHead(props) {
+function EnhancedTableHead(props) {
   const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -192,193 +192,223 @@ const useToolbarStyles = makeStyles((theme) => ({
   
   
 
-  const EnhancedTableToolbar = (props) => {
+const EnhancedTableToolbar = (props) => {
   
-  const classes = useToolbarStyles();
-  const { numSelected , selected, history} = props;
+    const classes = useToolbarStyles();
+    const { numSelected , selected} = props;
+    const history = useHistory();    
+    const [open, setOpen] = React.useState(false);    // useState para setar o abrir/fechar do popUp do form de edit/remove
+    
+   
 
-  const [open, setOpen] = React.useState(false);
-
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-
-  const remove = (objetoCategoria) =>{
-
-    categoriesRepository.deleteCategoria(objetoCategoria)
-    .then((res)=>{        
-        alert(`Sucesso ao remover categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`)  
-        return res;
-    })
-    .catch(err =>{    
-      alert(`Erro ao remover categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`);
-      console.log(err);
-    })
-  }
-
-  const update = (objetoCategoria) =>{
-
-    categoriesRepository.updateCategoria(objetoCategoria)
-    .then((res)=>{        
-        alert(`Sucesso ao atualizar categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`)  
-        return res;
-    })
-    .catch(err =>{    
-      alert(`Erro ao atualizar categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`);
-      console.log(err);
-    })
-  }
-
-
-  var previusData;
-
-  if(selected.length <= 1){
-    console.log('Alvo');
-    previusData = (rows.filter(row => {
-      return row.id == selected;
-    }))[0];
-
-    console.log(previusData);
-
-  }
+  
     
 
-  console.log('OPÇÂO');
-  console.log(selected);
+    const handleOpen = () => {
+      setOpen(true);
+    };
 
-  //console.log(open);
-  return (
-    <Toolbar
-      className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0,
-      })}
-    >
-      {numSelected > 0 ? (
-        <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-          {numSelected} {numSelected > 1 ? 'itens selecionados': 'item selecionado'}
-        </Typography>
-      ) : (
-        <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Categorias
-        </Typography>
-      )}
+    const handleClose = () => {
+      setOpen(false);
+    };
 
-      {numSelected > 0 ? (
-        <>
-            <Tooltip title="Remover">
-                <IconButton 
-                    aria-label="remover" 
-                    onClick={() => { 
-                          selected.map((item)=>{
-                             var dataRows = rows.filter(row => {
-                              return row.id == item;
-                            });
-                             
-                            for(let i in dataRows){
-                                console.log(remove(dataRows[i]));
-                            }
-                        }) 
-                      }
-                     }>
-                    <DeleteIcon />
-                </IconButton>
-            </Tooltip>
-            {selected.length <= 1 && (
-              <Tooltip title="Atualizar">
+
+    const remove = (objetoCategoria) =>{
+
+      categoriesRepository.deleteCategoria(objetoCategoria)
+      .then((res)=>{        
+          alert(`Sucesso ao remover categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`);
+            
+          return res;
+      })
+      .catch(err =>{    
+        alert(`Erro ao remover categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`);
+        console.log(err);
+      })
+    }
+
+    const update = (objetoCategoria, previusData) =>{
+
+      console.log('Objeto da Categoria');
+      console.log(objetoCategoria);
+
+      categoriesRepository.updateCategoria({
+          id: previusData.id,
+          titulo: objetoCategoria.titulo == '' ? previusData.titulo : objetoCategoria.titulo,
+          cor: objetoCategoria.cor,
+          text: objetoCategoria.text == '' ? previusData.text : objetoCategoria.text,
+          url: objetoCategoria.url == '' ? previusData.url : objetoCategoria.url
+      })
+      .then((res)=>{        
+          alert(`Sucesso ao atualizar categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`)  
+          return res;
+      })
+      .catch(err =>{    
+        alert(`Erro ao atualizar categoria id[${objetoCategoria.id}] nome: ${objetoCategoria.titulo}`);
+        console.log(err);
+      })
+    }
+
+    var dadosIniciais = {       // <- Objeto que armazena valores iniciais para o formulário
+      cor: '#000',
+      text: '',
+      titulo: '',
+      url: '',
+    };
+
+    var previusData;
+
+    if(selected.length <= 1){
+      console.log('Alvo');
+      previusData = (rows.filter(row => {
+        return row.id == selected;
+      }))[0];
+
+      console.log('Marcou');
+      console.log(previusData);
+      
+    }
+    
+    const { valores ,handleDoValorCampo, clearForm} = useForm(dadosIniciais);     // Contruindo Hooks de formulário
+
+
+
+    console.log('OPÇÂO');
+  //  console.log(selected);
+    
+    //console.log(open);
+    return (
+      <Toolbar
+        className={clsx(classes.root, {
+          [classes.highlight]: numSelected > 0,
+        })}
+      >
+        {numSelected > 0 ? (
+          <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
+            {numSelected} {numSelected > 1 ? 'itens selecionados': 'item selecionado'}
+          </Typography>
+        ) : (
+          <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+            Categorias
+          </Typography>
+        )}
+
+        {numSelected > 0 ? (
+          <>
+              <Tooltip title="Remover">
                   <IconButton 
-                      aria-label="atualizar" 
-                      onClick={handleOpen}>
-                      <UpdateIcon />
+                      aria-label="remover" 
+                      onClick={() => { 
+                            selected.map((item)=>{
+                              var dataRows = rows.filter(row => {
+                                return row.id == item;
+                              });
+                              
+                              for(let i in dataRows){
+                                  console.log(remove(dataRows[i]));
+                              }
+
+                          })
+                          history.push('/update-remove/categoria'); 
+                          history.go();
+                        }
+                      }>
+                      <DeleteIcon />
                   </IconButton>
               </Tooltip>
-            )} 
-          <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">Edição de categoria</DialogTitle>
-            <DialogContent>
-                <DialogContentText>
-                  Abaixo insira as novas informações para a categoria:
-                </DialogContentText>
+              {selected.length <= 1 && (
 
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="titulo"
-                  label="Titulo"
-                  type="text"
-                  placeholder={previusData.titulo}
-                  fullWidth
-                />
-                <TextField
-                    autoFocus
-                    margin="dense"
-                    id="descricao"
-                    label="Descrição"
-                    placeholder={previusData.text}
-                    type="text"
-                    fullWidth
-                />
-
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="cor"
-                  label="*Cor"
-                  type="color"
-                  fullWidth
-                />
-
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="link"
-                  label="Link"
-                  placeholder={previusData.link}
-                  type="text"
-                  fullWidth
-                />
-
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="text"
-                  label="Texto do link extra"
-                  placeholder={previusData.link}
-                  type="text"
-                  fullWidth
-                />
-                
-            </DialogContent>
+                <>
+                  <Tooltip title="Atualizar">
+                      <IconButton 
+                          aria-label="atualizar" 
+                          onClick={handleOpen}>
+                          <UpdateIcon />
+                      </IconButton>
+                  </Tooltip>
             
-            <DialogActions>
-              <Button onClick={handleClose} color="primary">
-                Cancelar
-              </Button>
-              <Button onClick={()=> {
-                    update(previusData);
-                    handleClose();
-                }} 
-                color="primary">
-                Salvar
-              </Button>
-            </DialogActions>
-          </Dialog>
-      </>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )}
-    </Toolbar>
+                  <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Edição de categoria</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                          Abaixo insira as novas informações para a categoria:
+                        </DialogContentText>
 
-  );
+                        <TextField
+                          autoFocus
+                          onChange={handleDoValorCampo}
+                          margin="dense"
+                          name="titulo"
+                          label="Titulo"
+                          type="text"
+                          placeholder={previusData.titulo}
+                          fullWidth
+                        />
+                        <TextField
+                            autoFocus
+                            onChange={handleDoValorCampo}
+                            margin="dense"
+                            name="text"
+                            label="Descrição"
+                            placeholder={previusData.text}
+                            type="text"
+                            fullWidth
+                        />
+
+                        <TextField
+                          autoFocus
+                          onChange={handleDoValorCampo}
+                          margin="dense"
+                          name="cor"
+                          label="*Cor"
+                          type="color"
+                          fullWidth
+                        />
+
+                        <TextField
+                          autoFocus
+                          onChange={handleDoValorCampo}
+                          margin="dense"
+                          name="url"
+                          label="URL"
+                          placeholder={previusData.url}
+                          type="text"
+                          fullWidth
+                        />
+
+                        
+                        
+                    </DialogContent>
+                    
+                    <DialogActions>
+                      <Button onClick={handleClose} color="primary">
+                        Cancelar
+                      </Button>
+                      <Button onClick={()=> {
+                            update(valores, previusData);
+                            handleClose();
+                            history.push('/update-remove/categoria');
+                            history.go();
+
+                        }} 
+                        color="primary">
+                        Salvar
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+              </>
+            )} 
+          </>
+        ) : (
+          <Tooltip title="Filter list">
+            <IconButton aria-label="filter list">
+              <FilterListIcon />
+            </IconButton>
+          </Tooltip>
+        )}
+      </Toolbar>
+
+    );
 };
 
 EnhancedTableToolbar.propTypes = {
@@ -424,7 +454,7 @@ export default function EnhancedTable(data) {
   console.log(data.headCells);
   //console.log(data.rows);
   
-  const history = useHistory(); 
+
   const classes = useStyles();
 
   const [order, setOrder] = React.useState('asc');
@@ -499,7 +529,7 @@ export default function EnhancedTable(data) {
   return (
     <ContainerTable className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} selected={selected} history={history}/>
+        <EnhancedTableToolbar numSelected={selected.length} selected={selected} />
         <TableContainer>
           <Table
             className={classes.table}

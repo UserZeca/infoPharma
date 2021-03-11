@@ -17,7 +17,7 @@ export default function BannerMain({
 }) {
   //const youTubeID = getYouTubeId(url);
   //const bgUrl = `https://img.youtube.com/vi/${youTubeID}/maxresdefault.jpg`;
-  const src = `${process.env.PUBLIC_URL}/img/banner.jpg`
+  const src = `${process.env.PUBLIC_URL}/img/InfoPharm_Banner.png`
   return (
     <BannerMainContainer backgroundImage={src}>
       {/*

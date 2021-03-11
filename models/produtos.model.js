@@ -13,7 +13,6 @@ Produtos.init({
     }, 
     nome: {
         type: Sequelize.STRING,
-        allowNull: false,
         validate: {
             notEmpty: {
                 msg: '[nome] This field cannot be empty'
@@ -27,7 +26,6 @@ Produtos.init({
     subcategoria: {
         type: Sequelize.STRING,
         defaultValue: 'Geral',
-        allowNull: false,
         validate: {
             notEmpty: {
                 msg: '[nome] This field cannot be empty'
@@ -45,11 +43,8 @@ Produtos.init({
 
     url: {
         type: Sequelize.STRING,
-        validate: {
-            notEmpty: {
-                msg: '[url] This field cannot be empty'
-            },
-        }       
+        defaultValue: '/',
+        
     },
 
     preco: {

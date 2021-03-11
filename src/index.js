@@ -7,6 +7,7 @@ import CadastroProduto from './Pages/Cadastro/Produto';
 import CadastroCategoria from './Pages/Cadastro/Categoria';
 import Erro404 from './Pages/Erros/Erro404';
 import UpdateRemove_Categoria from './Pages/Update_Remove/Categoria'
+import UpdateRemove_Produto from './Pages/Update_Remove/Produto'
 
 
 
@@ -19,6 +20,7 @@ ReactDOM.render(
       <Route path="/cadastro/produto" component={CadastroProduto}  />
       <Route path="/cadastro/categoria" component={CadastroCategoria}  />
       <Route path="/update-remove/categoria" component={UpdateRemove_Categoria}  />
+      <Route path="/update-remove/produto" component={UpdateRemove_Produto}  />
 
 
       <Route component={Erro404} />

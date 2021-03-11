@@ -76,6 +76,7 @@ exports.findOne = (req,res) => {
 exports.update = (req, res) => {
 
     const id = req.params.id;
+    console.log(`ID PRODUTO ${id}`);
     Produtos.update(req.body, {
         where: { id: id}
     })

@@ -50,6 +50,7 @@ function Carroussel({
                             produtoTitle={produto.nome}
                             produtoURL={produto.url}
                             categoryColor={categoryColor}
+                            categoryTitle={categoryTitle}
                             produtoPreco={`R$ ${produto.preco}`}
                         />
                     </SliderItem>

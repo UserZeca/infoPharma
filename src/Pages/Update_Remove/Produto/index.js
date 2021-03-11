@@ -1,7 +1,7 @@
 import React , { useState ,useEffect } from 'react';
 import PageDefault from '../../../components/PageDefault';
 import EnhancedTable from './Table'
-import categoriesRepository from '../../../repositories/categorias';
+import produtosRepository from '../../../repositories/produtos';
 
 
 
@@ -12,7 +12,7 @@ function dataTable(){
      const headCells = [];
 
     setTimeout((async () => {
-         await categoriesRepository.getAll()
+         await produtosRepository.getAll()
             
         .then((res) => {
 
@@ -48,7 +48,7 @@ function dataTable(){
 
 const menuWithButtonLink = false;
 
-function UpdateRemove_Categoria(){
+function UpdateRemove_Produto(){
 
     //var data = [];
     var rows = [];
@@ -57,7 +57,7 @@ function UpdateRemove_Categoria(){
   
   
     useEffect(() => {
-        categoriesRepository.getAll().then( (respostaDoServidor) => {
+        produtosRepository.getAll().then( (respostaDoServidor) => {
 
             console.log("resposta do servidor ... zelda");
             console.log(respostaDoServidor);
@@ -74,17 +74,21 @@ function UpdateRemove_Categoria(){
     ,[]);
     
 
+    console.log('Lendo data');
+    console.log(data);
+
     for(let element of data){
-        rows.push({id: element.id ,titulo: element.titulo, cor: element.cor, url: element.url, text: element.text });
+        rows.push({id: element.id ,nome: element.nome, subcategoria: element.subcategoria,preco: element.preco,  url: element.url, emPromocao: element.emPromocao });
     }
     
     
     var headCells = [
         {id: 'id', numeric: false, disablePadding: false, label: 'id'},
-        {id: 'titulo', numeric: false, disablePadding: false, label: 'Titulo'},
-        {id: 'cor', numeric: false, disablePadding: false, label: 'Cor'},
-        {id: 'text', numeric: false, disablePadding: false, label: 'Texto do Link'},
+        {id: 'nome', numeric: false, disablePadding: false, label: 'Nome'},
+        {id: 'subcategoria', numeric: false, disablePadding: false, label: 'Subcategoria'},
+        {id: 'preco', numeric: false, disablePadding: false, label: 'Preco'},
         {id: 'url', numeric: false, disablePadding: false, label: 'url'},
+        {id: 'emPromocao', numeric: false, disablePadding: false, label: 'Produto em promoção'},
     ];
     
     /*
@@ -118,4 +122,4 @@ function UpdateRemove_Categoria(){
 }
 
 
-export default UpdateRemove_Categoria;
+export default UpdateRemove_Produto;
