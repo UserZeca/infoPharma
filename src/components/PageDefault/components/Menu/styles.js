@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import './Menu.css'
 
 export const LogoImg = styled.img`
     max-width: 168px ;

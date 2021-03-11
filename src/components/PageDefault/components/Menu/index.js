@@ -3,6 +3,7 @@ import React from 'react';
 import {LogoImg, MenuWrapper} from './styles';
 //import Button from '../../../Button';
 import { Link } from 'react-router-dom';
+import './Menu.css'
 
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -74,6 +75,7 @@ function Menu({menuWithButtonLink}){
 
                 <div>
                 <Button
+                    className="MenuDropDown"
                     ref={anchorRef}
                     aria-controls={open ? 'menu-list-grow' : undefined}
                     aria-haspopup="true"
